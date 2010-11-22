@@ -8,8 +8,6 @@ Echiquier::Echiquier() {
 	for ( int i = 0; i < 64; i++ ) {
 		m_cases[i] = NULL;
 	}
-
-	//_ui = NULL;
 }
 
 Piece* Echiquier::getPiece( int x, int y ) {
