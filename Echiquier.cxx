@@ -223,7 +223,7 @@ int Echiquier::getCase( int x, int y ) {
 	return ( x - 1 + ( y - 1 ) * 8 );
 }
 
-QWidget* Echiquier::getQWidget( QWidget* _centralWidget ) {
+QWidget* Echiquier::getQWidget( QWidget* & _centralWidget ) {
 	QGraphicsView *caseA1;
 	QGraphicsView *caseB1;
 	QGraphicsView *caseD1;

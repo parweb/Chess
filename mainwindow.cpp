@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	Echiquier *lEchiquier;
 	_Echiquier = lEchiquier;
 
-	ui->setupUi(this, _Echiquier);
+	ui->setupUi(this, lEchiquier);
 
 	/*
 	QWidget *centralWidget = new QWidget(this);
