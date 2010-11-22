@@ -36,6 +36,7 @@ OTHER_FILES += \
 	Pion/FouB.png \
 	Pion/Chess_symbols.PNG \
 	Pion/CavalierN.png \
-	Pion/CavalierB.png
+	Pion/CavalierB.png \
+    README.txt
 
 RESOURCES +=
