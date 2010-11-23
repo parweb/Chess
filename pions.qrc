@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Pion/FouN.png</file>
+        <file>Pion/PionB.png</file>
+        <file>Pion/CavalierB.png</file>
+        <file>Pion/CavalierN.png</file>
+        <file>Pion/FouB.png</file>
+        <file>Pion/PionN.png</file>
+        <file>Pion/ReineB.png</file>
+        <file>Pion/ReineN.png</file>
+        <file>Pion/RoiB.png</file>
+        <file>Pion/RoiN.png</file>
+        <file>Pion/TourB.png</file>
+        <file>Pion/TourN.png</file>
+    </qresource>
+</RCC>
