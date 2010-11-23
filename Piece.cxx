@@ -15,14 +15,14 @@ Piece::Piece () {
 	// ne fait rien => objet instancie mais non valide.
 }
 
-Piece::Piece ( int x, int y, bool white ) {
+Piece::Piece ( int x, int y, bool isWhite ) {
 	m_x = x;
 	m_y = y;
-	m_white = white;
+	m_white = isWhite;
 }
 
 Piece::Piece ( const Piece &autre ) {
-	m_x = autre.x ();
+	m_x = autre.x();
 	m_y = autre.m_y;
 	m_white = autre.m_white;
 }
@@ -35,15 +35,15 @@ Piece & Piece::operator=( const Piece &autre ) {
 	return *this;
 }
 
-void Piece::init ( int x, int y, bool white ) {
+void Piece::init ( int x, int y, bool isWhite ) {
 	m_x = x;
 	m_y = y;
-	m_white = white;
+	m_white = isWhite;
 }
 
 void Piece::move ( int x, int y ) {
-	m_x = x;
-	m_y = y;
+	this->m_x = x;
+	this->m_y = y;
 }
 
 bool Piece::mouvementValide ( Echiquier & e, int x, int y ) {
@@ -51,7 +51,7 @@ bool Piece::mouvementValide ( Echiquier & e, int x, int y ) {
 	return ( e.getPiece( x, y ) != NULL ) ;
 }
 
-QString Piece::myType () {
+QString Piece::getType () {
 	return ( ( m_white ) ? "Blanc" : "Noir" ) ;
 }
 
@@ -71,10 +71,18 @@ bool Piece::isBlack () {
 	return !m_white;
 }
 
-Roi::Roi ( bool white ) {
+void Piece::setQLabel( QLabel* & _QL ) {
+	this->_QLabel = _QL;
+}
+
+QLabel* Piece::getQLabel() {
+	return this->_QLabel;
+}
+
+Roi::Roi ( bool isWhite ) {
 	m_x = 5;
-	m_y = ( white ? 8:1 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 8:1 ) ;
+	m_white = isWhite;
 }
 
 bool Roi::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -84,14 +92,14 @@ bool Roi::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Roi::myType () {
+QString Roi::getType () {
 	return ( ( m_white ) ? "RoiBlanc" : "RoiNoir" ) ;
 }
 
-Reine::Reine ( bool white ) {
+Reine::Reine ( bool isWhite ) {
 	m_x = 4;
-	m_y = ( white ? 8:1 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 8:1 ) ;
+	m_white = isWhite;
 }
 
 bool Reine::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -101,14 +109,14 @@ bool Reine::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Reine::myType () {
+QString Reine::getType () {
 	return ( ( m_white ) ? "DameBlanche" : "DameNoire" ) ;
 }
 
-Fou::Fou ( bool white, int x ) {
+Fou::Fou ( bool isWhite, int x ) {
 	m_x = x;
-	m_y = ( white ? 8:1 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 8:1 ) ;
+	m_white = isWhite;
 }
 
 bool Fou::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -118,14 +126,14 @@ bool Fou::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Fou::myType () {
+QString Fou::getType () {
 	return ( ( m_white ) ? "FouBlanc" : "FouNoir" ) ;
 }
 
-Tour::Tour ( bool white, int x ) {
+Tour::Tour ( bool isWhite, int x ) {
 	m_x = x;
-	m_y = ( white ? 8:1 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 8:1 ) ;
+	m_white = isWhite;
 }
 
 bool Tour::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -135,14 +143,14 @@ bool Tour::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Tour::myType () {
+QString Tour::getType () {
 	return ( ( m_white ) ? "TourBlanche" : "TourNoire" ) ;
 }
 
-Cavalier::Cavalier ( bool white, int x ) {
+Cavalier::Cavalier ( bool isWhite, int x ) {
 	m_x = x;
-	m_y = ( white ? 8:1 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 8:1 ) ;
+	m_white = isWhite;
 }
 
 bool Cavalier::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -152,14 +160,14 @@ bool Cavalier::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Cavalier::myType () {
+QString Cavalier::getType () {
 	return ( ( m_white ) ? "CavalierBlanc" : "CavalierNoir" ) ;
 }
 
-Pion::Pion ( bool white, int x ) {
+Pion::Pion ( bool isWhite, int x ) {
 	m_x = x;
-	m_y = ( white ? 7:2 ) ;
-	m_white = white;
+	m_y = ( isWhite ? 7:2 ) ;
+	m_white = isWhite;
 }
 
 bool Pion::mouvementValide ( Echiquier &e, int x, int y ) {
@@ -169,6 +177,6 @@ bool Pion::mouvementValide ( Echiquier &e, int x, int y ) {
 	return true;
 }
 
-QString Pion::myType () {
+QString Pion::getType () {
 	return ( ( m_white ) ? "PionBlanc" : "PionNoir" ) ;
 }

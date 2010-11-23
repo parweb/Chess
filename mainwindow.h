@@ -22,8 +22,6 @@
 
 		private:
 			Ui::MainWindow *ui;
-
-		protected:
 			Echiquier* _Echiquier;
 
 		private slots:

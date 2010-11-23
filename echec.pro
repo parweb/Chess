@@ -37,6 +37,7 @@ OTHER_FILES += \
 	Pion/Chess_symbols.PNG \
 	Pion/CavalierN.png \
 	Pion/CavalierB.png \
-    README.txt
+	README.txt
 
-RESOURCES +=
+RESOURCES += \
+	pions.qrc

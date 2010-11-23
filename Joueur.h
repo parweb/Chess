@@ -10,7 +10,7 @@
 
 		public:
 			Joueur();
-			Joueur( bool white );
+			Joueur( bool isWhite );
 			void placerPieces( Echiquier & e );
 	};
 

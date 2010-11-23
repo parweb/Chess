@@ -5,19 +5,9 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
 	Echiquier *lEchiquier;
-	_Echiquier = lEchiquier;
+	this->_Echiquier = lEchiquier;
 
-	ui->setupUi(this, lEchiquier);
-
-	/*
-	QWidget *centralWidget = new QWidget(this);
-	QGraphicsView *caseA1 = new QGraphicsView(centralWidget);
-	caseA1->setObjectName(QString::fromUtf8("caseA1"));
-	caseA1->setGeometry(QRect(60, 100, 50, 50));
-	caseA1->setAutoFillBackground(false);
-	this->setCentralWidget(centralWidget);
-	*/
-
+	ui->setupUi(this);
 }
 
 MainWindow::~MainWindow()
@@ -35,7 +25,7 @@ void MainWindow::on_boutonNew_clicked()
 		ui->boutonSave->setEnabled(true);
 
 		// on initialise toutes les pieces sur léchiquier
-		_Echiquier->create( ui );
+		this->_Echiquier->create( ui );
 	}
 	else {
 		// si les pseudos sont pas rempli on désactive le bouton save
@@ -118,14 +108,6 @@ void MainWindow::on_boutonMove_clicked()
 		QMessageBox::information(this, "debug", "Les coordonnées d'arrivé ne sont pas valide");
 	}
 
-	// on déplace la piece dans le moteur de jeu
-	_Echiquier->deplacer( xd, yd, xf, yf );
-
-
-	// on vérifie quil y a bien une piece présente a la position départ
-
-	// on recupere le type de piece de départ pour calculer si le mouvement est valide
-
-   // QMessageBox::information(this, "sdg", origine.split());
-
+	// on déplace la piece
+	this->_Echiquier->deplacerPiece( xd, yd, xf, yf );
 }

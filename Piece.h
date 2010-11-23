@@ -2,6 +2,7 @@
 	#define Piece_h
 
 	#include <QString>
+	#include <QLabel>
 
 	class Echiquier;
 
@@ -15,61 +16,64 @@
 			int m_x;
 			int m_y;
 			bool m_white;
+			QLabel *_QLabel;
 
 		public:
 			Piece();
-			Piece( int x, int y, bool white );
+			Piece( int x, int y, bool isWhite );
 			Piece( const Piece & autre);
 			Piece & operator=(const Piece & autre);
-			void init( int x, int y, bool white );
-			void move( int x, int y );
+			void init( int x, int y, bool isWhite );
+			virtual void move( int x, int y );
 			virtual bool mouvementValide(Echiquier & e, int x, int y);
 			int x() const;
 			int y() const;
 			bool isWhite();
 			bool isBlack();
-			virtual QString myType();
+			virtual QString getType();
+			virtual void setQLabel( QLabel* & _ui );
+			virtual QLabel* getQLabel();
 	};
 
 	class Roi : public Piece {
 		public:
-			Roi(bool white);
+			Roi(bool isWhite);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 
 	class Reine : public Piece {
 		public:
-			Reine(bool white);
+			Reine(bool isWhite);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 
 	class Pion : public Piece {
 		public:
-			Pion(bool white, int nb);
+			Pion(bool isWhite, int nb);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 
 	class Fou : public Piece {
 		public:
-			Fou(bool white, int nb);
+			Fou(bool isWhite, int nb);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 
 	class Cavalier : public Piece {
 		public:
-			Cavalier(bool white, int nb);
+			Cavalier(bool isWhite, int nb);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 
 	class Tour : public Piece {
 		public:
-			Tour(bool white, int nb);
+			Tour(bool isWhite, int nb);
 			bool mouvementValide(Echiquier &e, int x, int y);
-			QString myType();
+			QString getType();
 	};
 #endif

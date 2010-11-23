@@ -1964,8 +1964,8 @@
    <widget class="QLabel" name="pionNoirTour1">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>105</y>
+      <x>-40</x>
+      <y>-70</y>
       <width>31</width>
       <height>41</height>
      </rect>
@@ -1977,7 +1977,10 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>Tn1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/TourN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -1992,14 +1995,17 @@
    <widget class="QLabel" name="pionNoirTour2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>105</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Tn2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/TourN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2014,14 +2020,17 @@
    <widget class="QLabel" name="pionNoirCavalier1">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>105</y>
+      <x>-70</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Cn1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/CavalierN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2036,14 +2045,17 @@
    <widget class="QLabel" name="pionNoirFou1">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>105</y>
+      <x>-60</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fn1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/FouN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2058,14 +2070,17 @@
    <widget class="QLabel" name="pionNoirRoi">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>105</y>
+      <x>-70</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Kn</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/RoiN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2080,14 +2095,17 @@
    <widget class="QLabel" name="pionNoirReine">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>105</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Qn</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/ReineN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2102,14 +2120,17 @@
    <widget class="QLabel" name="pionNoirFou2">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>105</y>
+      <x>-70</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fn2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/FouN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2124,14 +2145,17 @@
    <widget class="QLabel" name="pionNoirCavalier2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>105</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Cn2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/CavalierN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2146,8 +2170,8 @@
    <widget class="QLabel" name="pionNoirPion1">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>155</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
@@ -2156,7 +2180,10 @@
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>Pn1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2171,14 +2198,17 @@
    <widget class="QLabel" name="pionNoirPion2">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>155</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2193,14 +2223,17 @@
    <widget class="QLabel" name="pionNoirPion3">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>155</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn3</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2215,14 +2248,17 @@
    <widget class="QLabel" name="pionNoirPion4">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>155</y>
+      <x>-70</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn4</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2237,14 +2273,17 @@
    <widget class="QLabel" name="pionNoirPion5">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>155</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn5</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2259,14 +2298,17 @@
    <widget class="QLabel" name="pionNoirPion6">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>155</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn6</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2281,14 +2323,17 @@
    <widget class="QLabel" name="pionNoirPion7">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>155</y>
+      <x>-70</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn7</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2303,14 +2348,17 @@
    <widget class="QLabel" name="pionNoirPion8">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>155</y>
+      <x>-70</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pn8</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionN.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2325,14 +2373,17 @@
    <widget class="QLabel" name="pionBlancPion1">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2347,14 +2398,17 @@
    <widget class="QLabel" name="pionBlancPion8">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>405</y>
+      <x>-70</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb8</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2369,14 +2423,17 @@
    <widget class="QLabel" name="pionBlancPion6">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb6</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2391,14 +2448,17 @@
    <widget class="QLabel" name="pionBlancPion4">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb4</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2413,14 +2473,17 @@
    <widget class="QLabel" name="pionBlancPion7">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb7</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2435,14 +2498,17 @@
    <widget class="QLabel" name="pionBlancPion5">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>405</y>
+      <x>-90</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb5</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2457,14 +2523,17 @@
    <widget class="QLabel" name="pionBlancPion3">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb3</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2479,14 +2548,17 @@
    <widget class="QLabel" name="pionBlancPion2">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>405</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Pb2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/PionB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2501,14 +2573,17 @@
    <widget class="QLabel" name="pionBlancTour1">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Tb1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/TourB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2523,14 +2598,17 @@
    <widget class="QLabel" name="pionBlancTour2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>455</y>
+      <x>-90</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Tb2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/TourB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2545,14 +2623,17 @@
    <widget class="QLabel" name="pionBlancReine">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Qb</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/ReineB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2567,14 +2648,17 @@
    <widget class="QLabel" name="pionBlancCavalier2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Cb2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/CavalierB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2589,14 +2673,17 @@
    <widget class="QLabel" name="pionBlancFou2">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-90</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fb2</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/FouB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2611,14 +2698,17 @@
    <widget class="QLabel" name="pionBlancCavalier1">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Cb1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/CavalierB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2633,14 +2723,17 @@
    <widget class="QLabel" name="pionBlancFou1">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>455</y>
+      <x>-80</x>
+      <y>-80</y>
       <width>31</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Fb1</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/FouB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2652,17 +2745,20 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirRoi_2">
+   <widget class="QLabel" name="pionBlancRoi">
     <property name="geometry">
      <rect>
-      <x>215</x>
-      <y>455</y>
+      <x>-90</x>
+      <y>-90</y>
       <width>41</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Kb</string>
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="pions.qrc">:/Pion/RoiB.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -2706,6 +2802,8 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="pions.qrc"/>
+ </resources>
  <connections/>
 </ui>
