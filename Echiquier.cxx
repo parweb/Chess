@@ -6,7 +6,7 @@ using namespace std;
 
 Echiquier::Echiquier() {
 	for ( int i = 0; i < 64; i++ ) {
-		this->m_cases[i] = NULL;
+		m_cases[i] = NULL;
 	}
 }
 
@@ -300,7 +300,6 @@ bool Echiquier::enleverPiece( int x, int y ) {
 
 	return false;
 }
-
 
 int Echiquier::getCase( int x, int y ) {
 	return ( x - 1 + ( y - 1 ) * 8 );
