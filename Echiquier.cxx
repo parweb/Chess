@@ -248,10 +248,11 @@ bool Echiquier::placerPiece( Piece* p ) {
 		&& ( p->y() >= 1 ) && ( p->y() <= 8 )
 		&& ( p != NULL )
 	) {
-		this->m_cases[ getCase( p->x(), p->y() ) ] = p;
+		int i = getCase( p->x(), p->y() );
+		this->m_cases[i] = p;
 
-		int xi = 70;
-		int yi = 105;
+		int xi = 60;
+		int yi = 100;
 		int exi = 50;
 		int eyi = 50;
 
