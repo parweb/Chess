@@ -24,19 +24,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 OTHER_FILES += \
-	Pion/TourN.png \
-	Pion/TourB.png \
-	Pion/RoiN.png \
-	Pion/RoiB.png \
-	Pion/ReineN.png \
-	Pion/ReineB.png \
-	Pion/PionN.png \
-	Pion/PionB.png \
-	Pion/FouN.png \
-	Pion/FouB.png \
-	Pion/Chess_symbols.PNG \
-	Pion/CavalierN.png \
-	Pion/CavalierB.png \
 	README.txt
 
 RESOURCES += \
