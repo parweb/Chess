@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Echiquier.h"
 
 using namespace std;
@@ -10,16 +8,20 @@ Echiquier::Echiquier() {
 	}
 }
 
-Piece* Echiquier::getPiece( int x, int y ) {
+Piece * Echiquier::getPiece( int x, int y ) {
 	if (
 		( x >= 1 ) && ( x <= 8 ) &&
 		( y >= 1 ) && ( y <= 8 )
 	) {
 		int lacase = getCase( x, y );
 
-		Piece* lapiece = this->m_cases[ lacase ];
+		/*
+		Piece * lapiece = this->m_cases[ lacase ];
 
 		return lapiece;
+		*/
+
+		return this->m_cases[ lacase ];
 	}
 	else {
 		cout << "mauvais coord: x:" << x << " y:" << y << " !";
@@ -28,12 +30,12 @@ Piece* Echiquier::getPiece( int x, int y ) {
 	return NULL;
 }
 
-bool Echiquier::create( Ui::MainWindow* & _ui ) {
+bool Echiquier::create( Ui::MainWindow *& _ui ) {
 	//JoueurBlanc JoueurBlanc;
 	//JoueurNoir  JoueurNoir;
 
-	//JoueurBlanc.placerPieces( *this );
-	//JoueurNoir.placerPieces( *this );
+	//JoueurBlanc.placerPieces( * this );
+	//JoueurNoir.placerPieces( * this );
 
 	// -------------------------------- Roi
 
@@ -242,7 +244,7 @@ bool Echiquier::create( Ui::MainWindow* & _ui ) {
 	return true;
 }
 
-bool Echiquier::placerPiece( Piece* p ) {
+bool Echiquier::placerPiece( Piece * p ) {
 	if (
 		( p->x() >= 1 ) && ( p->x() <= 8 )
 		&& ( p->y() >= 1 ) && ( p->y() <= 8 )
@@ -259,7 +261,7 @@ bool Echiquier::placerPiece( Piece* p ) {
 		int xf = xi + ( exi * ( p->x() - 1 ) );
 		int yf = yi + ( eyi * ( p->y() - 1 ) );
 
-		QLabel* plop = p->getQLabel();
+		QLabel * plop = p->getQLabel();
 		plop->move( xf, yf );
 
 		return true;
@@ -268,7 +270,7 @@ bool Echiquier::placerPiece( Piece* p ) {
 	return false;
 }
 
-bool Echiquier::deplacerPiece( Piece* p, int x, int y ) {
+bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 	if (
 		( p != NULL )
 		&& ( x >= 1 ) && ( x <= 8 )
@@ -293,8 +295,8 @@ bool Echiquier::enleverPiece( int x, int y ) {
 	) {
 		int place = this->getCase( x, y );
 
-		Piece *tmp = NULL;
-		this->m_cases[ place ] = tmp;
+		//Piece * tmp = NULL;
+		this->m_cases[ place ] = NULL;
 
 		return true;
 	}

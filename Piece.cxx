@@ -6,8 +6,7 @@
 
 // A besoin de la declaration de la classe
 #include "Piece.h"
-#include "Echiquier.h"
-#include <iostream>
+
 
 using namespace std;
 
@@ -32,7 +31,7 @@ Piece & Piece::operator=( const Piece &autre ) {
 	m_y = autre.m_y;
 	m_white = autre.m_white;
 
-	return *this;
+	return * this;
 }
 
 void Piece::init ( int x, int y, bool isWhite ) {
@@ -71,17 +70,17 @@ bool Piece::isBlack () {
 	return !m_white;
 }
 
-void Piece::setQLabel( QLabel* & _QL ) {
+void Piece::setQLabel( QLabel *& _QL ) {
 	this->_QLabel = _QL;
 }
 
-QLabel* Piece::getQLabel() {
+QLabel * Piece::getQLabel() {
 	return this->_QLabel;
 }
 
 Roi::Roi ( bool isWhite ) {
 	m_x = 5;
-	m_y = ( isWhite ? 8:1 ) ;
+	m_y = ( isWhite ? 8 : 1 ) ;
 	m_white = isWhite;
 }
 

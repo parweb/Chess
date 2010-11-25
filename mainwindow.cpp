@@ -1,11 +1,10 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
-	Echiquier *lEchiquier;
-	this->_Echiquier = lEchiquier;
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
+	//Echiquier lEchiquier = new Echiquier;
+	this->_Echiquier = new Echiquier;
 
 	ui->setupUi(this);
 }
@@ -13,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow()
 {
 	delete ui;
+	delete this->_Echiquier;
 }
 
 void MainWindow::on_boutonNew_clicked()
@@ -25,6 +25,7 @@ void MainWindow::on_boutonNew_clicked()
 		ui->boutonSave->setEnabled(true);
 
 		// on initialise toutes les pieces sur léchiquier
+		//this->_Echiquier->create( ui );
 		this->_Echiquier->create( ui );
 	}
 	else {
@@ -109,5 +110,10 @@ void MainWindow::on_boutonMove_clicked()
 	}
 
 	// on déplace la piece
+	Piece * unepiece = this->_Echiquier->getPiece( xd, yd );
+//	QString letype = unepiece->getType();
+
+	//unepiece->getQLabel()->move( xf, yf );
+
 	this->_Echiquier->deplacerPiece( xd, yd, xf, yf );
 }
