@@ -3,10 +3,14 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
-	//Echiquier lEchiquier = new Echiquier;
-	this->_Echiquier = new Echiquier;
+	this->centralWidget = new QWidget( this );
+	this->centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
 
-	ui->setupUi(this);
+	this->_Echiquier = new Echiquier( this->centralWidget );
+
+	this->setCentralWidget( this->centralWidget );
+
+	//ui->setupUi( this );
 }
 
 MainWindow::~MainWindow()

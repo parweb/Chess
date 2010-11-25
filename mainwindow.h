@@ -26,6 +26,7 @@
 		private:
 			Ui::MainWindow * ui;
 			Echiquier * _Echiquier;
+			QWidget * centralWidget;
 
 		private slots:
 			void on_boutonMove_clicked();
