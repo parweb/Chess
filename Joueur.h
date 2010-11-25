@@ -1,12 +1,14 @@
+/*
 #if !defined Joueur_h
 	#define Joueur_h
 
+	#include <iostream>
+
 	#include "Piece.h"
-	#include "Echiquier.h"
 
 	class Joueur {
 		protected:
-			Piece m_pieces[ 16 ];
+			Piece * m_pieces[ 16 ];
 
 		public:
 			Joueur();
@@ -24,3 +26,4 @@
 			JoueurNoir();
 	};
 #endif
+*/

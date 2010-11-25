@@ -1,4 +1,4 @@
-#include <iostream>
+/*
 // A besoin de la declaration de la classe
 #include "Joueur.h"
 
@@ -33,3 +33,4 @@ JoueurNoir::JoueurNoir() {
 		this->m_pieces[ n++ ].init( x, 7, false );
 	}
 }
+*/
