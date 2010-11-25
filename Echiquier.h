@@ -18,10 +18,11 @@
 			Echiquier();
 			Piece * getPiece( int x, int y );
 			Piece * getPiece( int i );
+
 			void setPiece( int x, int y, Piece * p );
 			void setPiece( int i, Piece * p );
 
-			Echiquier * create( Ui::MainWindow *& _ui );
+			void create( Ui::MainWindow *& _ui );
 
 			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );
@@ -33,6 +34,8 @@
 			bool enleverPiece( Piece * p );
 
 			int getCase( int x, int y );
+			int getCase( Piece * p );
+
 			QWidget * getQWidget( QWidget *& _centralWidget );
 	};
 #endif

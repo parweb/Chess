@@ -54,7 +54,7 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
-Echiquier * Echiquier::create( Ui::MainWindow *& _ui ) {
+void Echiquier::create( Ui::MainWindow *& _ui ) {
 	//JoueurBlanc JoueurBlanc;
 	//JoueurNoir  JoueurNoir;
 
