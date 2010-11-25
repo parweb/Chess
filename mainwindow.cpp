@@ -26,7 +26,7 @@ void MainWindow::on_boutonNew_clicked()
 
 		// on initialise toutes les pieces sur léchiquier
 		//this->_Echiquier->create( ui );
-		this->_Echiquier->create( ui );
+		this->_Echiquier->create( this );
 	}
 	else {
 		// si les pseudos sont pas rempli on désactive le bouton save

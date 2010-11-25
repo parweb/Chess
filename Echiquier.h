@@ -22,7 +22,7 @@
 			void setPiece( int x, int y, Piece * p );
 			void setPiece( int i, Piece * p );
 
-			void create( Ui::MainWindow *& _ui );
+			void create( QMainWindow * MainWindow );
 
 			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );

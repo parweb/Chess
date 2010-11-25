@@ -40,9 +40,19 @@ void Piece::init ( int x, int y, bool isWhite ) {
 	m_white = isWhite;
 }
 
-void Piece::move ( int x, int y ) {
+void Piece::moveTo ( int x, int y ) {
 	this->m_x = x;
 	this->m_y = y;
+
+	int xi = 60;
+	int yi = 100;
+	int exi = 50;
+	int eyi = 50;
+
+	int xf = xi + ( exi * ( this->m_x - 1 ) );
+	int yf = yi + ( eyi * ( this->m_y - 1 ) );
+
+	this->move( xf, yf );
 }
 
 bool Piece::mouvementValide ( Echiquier & e, int x, int y ) {
