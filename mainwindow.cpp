@@ -4,7 +4,7 @@ using namespace std;
 
 MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
 	this->centralWidget = new QWidget( this );
-	this->centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+	this->centralWidget->setObjectName("centralWidget");
 
 	this->_Echiquier = new Echiquier( this->centralWidget );
 
@@ -19,7 +19,7 @@ MainWindow::~MainWindow()
 	delete this->_Echiquier;
 }
 
-void MainWindow::on_boutonNew_clicked()
+void MainWindow::on_buttonNew_clicked()
 {
 	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
 	QString pseudo2 = QInputDialog::getText( this, "Joueur 2", "Nom du joueur 2 :" );

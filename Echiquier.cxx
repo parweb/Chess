@@ -7,6 +7,7 @@ Echiquier::Echiquier() {
 }
 
 Echiquier::Echiquier( QWidget * parent = 0 ) : QWidget( parent ) {
+	this->setObjectName("echiquier");
 	Echiquier::getButtonNew( parent );
 
 	Echiquier::getLegendX( parent );
@@ -62,21 +63,17 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
-void Echiquier::create( QMainWindow * MainWindow ) {
+void Echiquier::create( QWidget * parent ) {
 	//JoueurBlanc JoueurBlanc;
 	//JoueurNoir  JoueurNoir;
 
 	//JoueurBlanc.placerPieces( * this );
 	//JoueurNoir.placerPieces( * this );
 
-	MainWindow->setEnabled(true);
-	MainWindow->resize(512, 616);
-
-	QWidget * centralWidget = new QWidget( MainWindow );
-	centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
+	parent->resize(10, 10);
 
 	// -------------------------------- Roi
-
+/*
 	Roi RoiBlanc(true);
 	//RoiBlanc.setQLabel( _ui->pionBlancRoi );
 	this->enleverPiece(5,8);
@@ -280,6 +277,7 @@ void Echiquier::create( QMainWindow * MainWindow ) {
 	this->enleverPiece(8,2);
 	this->placerPiece(&PionNoirHuit);
 	//_ui->pionNoirPion8->move( 420, 155 );
+*/
 }
 
 bool Echiquier::placerPiece( int x, int y ) {
@@ -386,6 +384,7 @@ void Echiquier::getDamier ( QWidget * parent ) {
 
 		QGraphicsView * place = new QGraphicsView( conteneur );
 
+		place->setObjectName("CASE_"+QString::number( i+1 ));
 		place->setGeometry( QRect( xf, yf, exi, eyi ) );
 		place->setAutoFillBackground( false );
 
@@ -420,6 +419,7 @@ void Echiquier::getLegendX ( QWidget * parent ) {
 
 		Arrive = Depart + ( Ecart * i );
 
+		label->setObjectName("_"+abscisse.value( i ));
 		label->setText( abscisse.value( i ) );
 		label->setGeometry( QRect( Arrive, 0, 50, 50 ) );
 		label->setFont( this->getLegendFont() );
@@ -441,6 +441,7 @@ void Echiquier::getLegendY ( QWidget * parent ) {
 
 		Arrive = Depart + ( Ecart * i );
 
+		label->setObjectName("_"+QString::number( i+1 ));
 		label->setText( QString::number( i+1 ) );
 		label->setGeometry( QRect( 0, Arrive, 50, 50 ) );
 		label->setFont( this->getLegendFont() );
@@ -457,13 +458,13 @@ QFont Echiquier::getLegendFont () {
 
 void Echiquier::getButtonNew ( QWidget * parent ) {
 	QPushButton * buttonNew = new QPushButton( parent );
-	buttonNew->setObjectName(QString::fromUtf8("boutonNew"));
+	buttonNew->setObjectName("boutonNew");
 	buttonNew->setGeometry(QRect(80, 20, 110, 32));
 	buttonNew->setText("Nouveau");
 
-	QObject::connect( buttonNew, SIGNAL( clicked() ), SLOT( clicked_buttonNew() ) );
+	QObject::connect( buttonNew, SIGNAL(clicked()), this, SLOT(clicked_buttonNew()) );
 }
 
-void Echiquier::clicked_buttonNew () {
+void Echiquier::clicked_buttonNew() {
 	QMessageBox::information(this, "debug", "plop");
 }

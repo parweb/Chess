@@ -21,8 +21,6 @@ HEADERS  += mainwindow.h \
 	Joueur.h \
 	Echiquier.h
 
-FORMS    += mainwindow.ui
-
 OTHER_FILES += \
 	README.txt
 

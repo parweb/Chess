@@ -12,7 +12,7 @@
 	class Piece;
 
 	class Echiquier : QWidget {
-		// Q_OBJECT
+		//Q_OBJECT
 
 		private:
 			Piece * m_cases[ 64 ];
@@ -27,7 +27,7 @@
 			void setPiece( int x, int y, Piece * p );
 			void setPiece( int i, Piece * p );
 
-			void create( QMainWindow * MainWindow );
+			void create( QWidget * parent );
 
 			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );
