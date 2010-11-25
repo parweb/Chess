@@ -3,9 +3,17 @@
 using namespace std;
 
 Echiquier::Echiquier() {
-	for ( int i = 0; i < 64; i++ ) {
-		this->setPiece( i, NULL );
-	}
+	//
+}
+
+Echiquier::Echiquier( QWidget * parent = 0 ) : QWidget( parent ) {
+	Echiquier::getButtonNew( parent );
+
+	Echiquier::getLegendX( parent );
+
+	Echiquier::getLegendY( parent );
+
+	Echiquier::getDamier( parent );
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -345,4 +353,117 @@ int Echiquier::getCase( int x, int y ) {
 
 int Echiquier::getCase( Piece * p ) {
 	return getCase( p->x(), p->y() );
+}
+
+QPoint * Echiquier::getCoord( int i ) {
+	int x, y;
+
+	x = ( i % 8 ) + 1;
+	y = ( i / 8 ) + 1;
+
+	return new QPoint( x, y );
+}
+
+void Echiquier::getDamier ( QWidget * parent ) {
+	QWidget * conteneur = new QWidget( parent );
+	conteneur->resize( 400, 400 );
+	conteneur->move( 60, 100 );
+
+	for ( int i = 0; i < 64; i++ ) {
+		this->setPiece( i, NULL );
+
+		QPoint * coord = this->getCoord( i );
+
+		int xi = 0;
+		int yi = 0;
+		int exi = 50;
+		int eyi = 50;
+
+		int xf, yf;
+
+		xf = xi + ( exi * ( coord->x() - 1 ) );
+		yf = yi + ( eyi * ( coord->y() - 1 ) );
+
+		QGraphicsView * place = new QGraphicsView( conteneur );
+
+		place->setGeometry( QRect( xf, yf, exi, eyi ) );
+		place->setAutoFillBackground( false );
+
+		if ( ( coord->x() + coord->y() ) % 2 ) {
+			place->setStyleSheet(QString::fromUtf8("background:rgb(100, 100, 100);"));
+		}
+	}
+}
+
+void Echiquier::getLegendX ( QWidget * parent ) {
+	QMap<int, QString> abscisse;
+
+	abscisse.insert(0, "A");
+	abscisse.insert(1, "B");
+	abscisse.insert(2, "C");
+	abscisse.insert(3, "D");
+	abscisse.insert(4, "E");
+	abscisse.insert(5, "F");
+	abscisse.insert(6, "G");
+	abscisse.insert(7, "H");
+
+	int Depart = 0;
+	int Ecart = 50;
+	int Arrive = 0;
+
+	QWidget * conteneur = new QWidget( parent );
+	conteneur->resize( 400, 50 );
+	conteneur->move( 60, 50 );
+
+	for ( int i = 0; i < 8; i++ ) {
+		QLabel * label = new QLabel( conteneur );
+
+		Arrive = Depart + ( Ecart * i );
+
+		label->setText( abscisse.value( i ) );
+		label->setGeometry( QRect( Arrive, 0, 50, 50 ) );
+		label->setFont( this->getLegendFont() );
+		label->setAlignment( Qt::AlignCenter );
+	}
+}
+
+void Echiquier::getLegendY ( QWidget * parent ) {
+	int Depart = 0;
+	int Ecart = 50;
+	int Arrive = 0;
+
+	QWidget * conteneur = new QWidget( parent );
+	conteneur->resize( 50, 400 );
+	conteneur->move( 10, 100 );
+
+	for ( int i = 0; i < 8; i++ ) {
+		QLabel * label = new QLabel( conteneur );
+
+		Arrive = Depart + ( Ecart * i );
+
+		label->setText( QString::number( i+1 ) );
+		label->setGeometry( QRect( 0, Arrive, 50, 50 ) );
+		label->setFont( this->getLegendFont() );
+		label->setAlignment( Qt::AlignCenter );
+	}
+}
+
+QFont Echiquier::getLegendFont () {
+	QFont font;
+	font.setPointSize( 30 );
+
+	return font;
+}
+
+void Echiquier::getButtonNew ( QWidget * parent ) {
+	QPushButton * buttonNew = new QPushButton( parent );
+	buttonNew->setObjectName(QString::fromUtf8("boutonNew"));
+	buttonNew->setGeometry(QRect(80, 20, 110, 32));
+	buttonNew->setText("Nouveau");
+
+	QObject::connect( buttonNew, SIGNAL( clicked() ), SLOT( clicked_buttonNew() ) );
+}
+
+void Echiquier::clicked_buttonNew () {
+	QMessageBox::information(this, "debug", "plop");
 }

@@ -2,6 +2,7 @@
 	#define Echiquier_h
 
 	#include <iostream>
+	#include <QMessageBox>
 
 	#include "Piece.h"
 	#include "Joueur.h"
@@ -10,12 +11,16 @@
 
 	class Piece;
 
-	class Echiquier {
+	class Echiquier : QWidget {
+		// Q_OBJECT
+
 		private:
 			Piece * m_cases[ 64 ];
 
 		public:
 			Echiquier();
+			Echiquier( QWidget * parent );
+
 			Piece * getPiece( int x, int y );
 			Piece * getPiece( int i );
 
@@ -36,6 +41,20 @@
 			int getCase( int x, int y );
 			int getCase( Piece * p );
 
+			QPoint * getCoord( int i );
+
+			void getDamier ( QWidget * parent );
+			void getLegendX ( QWidget * parent );
+			void getLegendY ( QWidget * parent );
+
+			void getButtonNew ( QWidget * parent );
+
+
+			QFont getLegendFont ();
+
 			QWidget * getQWidget( QWidget *& _centralWidget );
+
+		public slots:
+			void clicked_buttonNew();
 	};
 #endif
