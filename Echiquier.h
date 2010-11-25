@@ -22,10 +22,16 @@
 			void setPiece( int i, Piece * p );
 
 			Echiquier * create( Ui::MainWindow *& _ui );
+
+			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );
+
 			bool deplacerPiece( Piece * p, int x, int y );
 			bool deplacerPiece( int xd, int yd, int xf, int yf );
+
 			bool enleverPiece( int x, int y );
+			bool enleverPiece( Piece * p );
+
 			int getCase( int x, int y );
 			QWidget * getQWidget( QWidget *& _centralWidget );
 	};

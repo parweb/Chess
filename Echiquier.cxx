@@ -4,7 +4,7 @@ using namespace std;
 
 Echiquier::Echiquier() {
 	for ( int i = 0; i < 64; i++ ) {
-		m_cases[i] = NULL;
+		this->setPiece( i, NULL );
 	}
 }
 
@@ -34,7 +34,7 @@ Piece * Echiquier::getPiece( int i ) {
 }
 
 void Echiquier::setPiece( int i, Piece * p ) {
-	if ( ( i >= 0 ) && ( i <= 63 ) && p != NULL ) {
+	if ( ( i >= 0 ) && ( i <= 63 ) ) {
 		this->m_cases[ i ] = p;
 	}
 	else {
@@ -45,8 +45,7 @@ void Echiquier::setPiece( int i, Piece * p ) {
 void Echiquier::setPiece( int x, int y, Piece * p ) {
 	if (
 		( x >= 1 ) && ( x <= 8 ) &&
-		( y >= 1 ) && ( y <= 8 ) &&
-		( p != NULL )
+		( y >= 1 ) && ( y <= 8 )
 	) {
 		this->setPiece( this->getCase( x, y ), p );
 	}
@@ -269,6 +268,10 @@ Echiquier * Echiquier::create( Ui::MainWindow *& _ui ) {
 	return this;
 }
 
+bool Echiquier::placerPiece( int x, int y ) {
+	return this->placerPiece( this->getPiece( x, y ) );
+}
+
 bool Echiquier::placerPiece( Piece * p ) {
 	if (
 		( p->x() >= 1 ) && ( p->x() <= 8 )
@@ -276,7 +279,7 @@ bool Echiquier::placerPiece( Piece * p ) {
 		&& ( p != NULL )
 	) {
 		int i = getCase( p->x(), p->y() );
-		this->m_cases[i] = p;
+		this->setPiece( i, p );
 
 		int xi = 60;
 		int yi = 100;
@@ -297,9 +300,9 @@ bool Echiquier::placerPiece( Piece * p ) {
 
 bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 	if (
-		( p != NULL )
-		&& ( x >= 1 ) && ( x <= 8 )
-		&& ( y >= 1 ) && ( y <= 8 )
+		( p != NULL ) &&
+		( x >= 1 ) && ( x <= 8 ) &&
+		( y >= 1 ) && ( y <= 8 )
 	) {
 		this->enleverPiece( p->x(), p->y() );
 		return this->placerPiece( p );
@@ -309,19 +312,15 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 }
 
 bool Echiquier::deplacerPiece( int xd, int yd, int xf, int yf ) {
-	return this->deplacerPiece( getPiece( xd, yd ), xf, yf );
+	return this->deplacerPiece( this->getPiece( xd, yd ), xf, yf );
 }
 
 bool Echiquier::enleverPiece( int x, int y ) {
 	if (
-		( this->getPiece( x, y ) != NULL )
-		&& ( x >= 1 ) && ( x <= 8 )
-		&& ( y >= 1 ) && ( y <= 8 )
+		( x >= 1 ) && ( x <= 8 ) &&
+		( y >= 1 ) && ( y <= 8 )
 	) {
-		int place = this->getCase( x, y );
-
-		//Piece * tmp = NULL;
-		this->m_cases[ place ] = NULL;
+		this->setPiece( this->getCase( x, y ), NULL );
 
 		return true;
 	}
@@ -329,6 +328,21 @@ bool Echiquier::enleverPiece( int x, int y ) {
 	return false;
 }
 
+bool Echiquier::enleverPiece( Piece * p ) {
+	if (
+		( p->x() >= 1 ) && ( p->x() <= 8 ) &&
+		( p->y() >= 1 ) && ( p->y() <= 8 )
+	) {
+		return this->enleverPiece( p->x(), p->y() );
+	}
+
+	return false;
+}
+
 int Echiquier::getCase( int x, int y ) {
 	return ( x - 1 + ( y - 1 ) * 8 );
+}
+
+int Echiquier::getCase( Piece * p ) {
+	return getCase( p->x(), p->y() );
 }
