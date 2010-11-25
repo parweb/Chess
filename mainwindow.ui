@@ -1521,342 +1521,6 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="_A">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>A</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_B">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>B</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_C">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>C</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_D">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>D</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_E">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>E</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_F">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>F</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_G">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>G</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_H">
-    <property name="geometry">
-     <rect>
-      <x>420</x>
-      <y>60</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>H</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_1">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>105</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>1</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_2">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>155</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>2</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_3">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>205</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>3</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_4">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>255</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>4</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_5">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>305</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>5</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_6">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>355</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>6</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_7">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>405</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>7</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="_8">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>455</y>
-      <width>31</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>25</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background: transparent;</string>
-    </property>
-    <property name="plainText">
-     <string>8</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="boutonNew">
     <property name="geometry">
      <rect>
@@ -1961,813 +1625,340 @@
      <string>Déplacer</string>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirTour1">
+   <widget class="QLabel" name="_A">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>60</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/tour_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>A</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirTour2">
+   <widget class="QLabel" name="_B">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>110</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/tour_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>B</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirCavalier1">
+   <widget class="QLabel" name="_C">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>160</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/cavalier_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>C</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirFou1">
+   <widget class="QLabel" name="_D">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>210</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/fou_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>D</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirRoi">
+   <widget class="QLabel" name="_H">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>410</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/roi_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>H</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirReine">
+   <widget class="QLabel" name="_G">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>360</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/reine_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>G</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirFou2">
+   <widget class="QLabel" name="_E">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>260</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/fou_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>E</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirCavalier2">
+   <widget class="QLabel" name="_F">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>310</x>
+      <y>50</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/cavalier_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>F</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion1">
+   <widget class="QLabel" name="_1">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>100</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
     </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>1</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion2">
+   <widget class="QLabel" name="_2">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>150</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>2</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion3">
+   <widget class="QLabel" name="_3">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>200</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>3</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion4">
+   <widget class="QLabel" name="_4">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>250</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>4</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion5">
+   <widget class="QLabel" name="_5">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>300</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>5</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion6">
+   <widget class="QLabel" name="_7">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>400</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>7</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion7">
+   <widget class="QLabel" name="_8">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>450</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>8</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="pionNoirPion8">
+   <widget class="QLabel" name="_6">
     <property name="geometry">
      <rect>
-      <x>-100</x>
-      <y>-100</y>
+      <x>10</x>
+      <y>350</y>
       <width>50</width>
       <height>50</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>30</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_noir.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
+     <string>6</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion1">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion8">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion6">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion4">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion7">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion5">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion3">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancPion2">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/pion_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancTour1">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/tour_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancTour2">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/tour_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancReine">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/reine_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancCavalier2">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/cavalier_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancFou2">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/fou_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancCavalier1">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/cavalier_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancFou1">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/fou_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLabel" name="pionBlancRoi">
-    <property name="geometry">
-     <rect>
-      <x>-100</x>
-      <y>-100</y>
-      <width>50</width>
-      <height>50</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="pions.qrc">:/Pion/roi_blanc.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="openExternalLinks">
-     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -2802,8 +1993,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="pions.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

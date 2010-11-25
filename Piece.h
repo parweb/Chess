@@ -9,7 +9,7 @@
 
 	class Echiquier;
 
-	class Piece {
+	class Piece : public QLabel {
 		/*static const int _X = 70;
 		static const int _Y = 105;
 		static const int _EX = 50;
@@ -27,7 +27,7 @@
 			Piece( const Piece & autre);
 			Piece & operator=(const Piece & autre);
 			void init( int x, int y, bool isWhite );
-			virtual void move( int x, int y );
+			virtual void moveTo( int x, int y );
 			virtual bool mouvementValide(Echiquier & e, int x, int y);
 			int x() const;
 			int y() const;

@@ -5,7 +5,12 @@
 
 int main( int argc, char * argv[] ) {
 	QApplication a( argc, argv );
+
 	MainWindow w;
+
+	w.setEnabled(true);
+	w.resize(520, 620);
+
 	w.show();
 
 	return a.exec();

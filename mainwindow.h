@@ -26,9 +26,11 @@
 		private:
 			Ui::MainWindow * ui;
 			Echiquier * _Echiquier;
+			QWidget * centralWidget;
 
 		private slots:
-			void on_boutonMove_clicked();
+			void on_pionBlancCavalier1_linkHovered(QString link);
+   void on_boutonMove_clicked();
 			void on_boutonReload_clicked();
 			void on_boutonNew_clicked();
 	};
