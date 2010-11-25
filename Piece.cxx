@@ -19,13 +19,13 @@ Piece::Piece ( int x, int y, bool isWhite ) {
 	m_y = y;
 	m_white = isWhite;
 }
-
+/*
 Piece::Piece ( const Piece &autre ) {
 	m_x = autre.x();
 	m_y = autre.m_y;
 	m_white = autre.m_white;
 }
-
+*/
 Piece & Piece::operator=( const Piece &autre ) {
 	m_x = autre.x();
 	m_y = autre.m_y;
