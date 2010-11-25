@@ -13,15 +13,7 @@ Piece * Echiquier::getPiece( int x, int y ) {
 		( x >= 1 ) && ( x <= 8 ) &&
 		( y >= 1 ) && ( y <= 8 )
 	) {
-		int lacase = getCase( x, y );
-
-		/*
-		Piece * lapiece = this->m_cases[ lacase ];
-
-		return lapiece;
-		*/
-
-		return this->m_cases[ lacase ];
+		return this->getPiece( getCase( x, y ) );
 	}
 	else {
 		cout << "mauvais coord: x:" << x << " y:" << y << " !";
@@ -30,7 +22,40 @@ Piece * Echiquier::getPiece( int x, int y ) {
 	return NULL;
 }
 
-bool Echiquier::create( Ui::MainWindow *& _ui ) {
+Piece * Echiquier::getPiece( int i ) {
+	if ( ( i >= 0 ) && ( i <= 63 ) ) {
+		return this->m_cases[ i ];
+	}
+	else {
+		cout << "Nombre non compris entre 0 et 63 !";
+	}
+
+	return NULL;
+}
+
+void Echiquier::setPiece( int i, Piece * p ) {
+	if ( ( i >= 0 ) && ( i <= 63 ) && p != NULL ) {
+		this->m_cases[ i ] = p;
+	}
+	else {
+		cout << "Nombre non compris entre 0 et 63 !";
+	}
+}
+
+void Echiquier::setPiece( int x, int y, Piece * p ) {
+	if (
+		( x >= 1 ) && ( x <= 8 ) &&
+		( y >= 1 ) && ( y <= 8 ) &&
+		( p != NULL )
+	) {
+		this->setPiece( this->getCase( x, y ), p );
+	}
+	else {
+		cout << "Coordonnée non valide";
+	}
+}
+
+Echiquier * Echiquier::create( Ui::MainWindow *& _ui ) {
 	//JoueurBlanc JoueurBlanc;
 	//JoueurNoir  JoueurNoir;
 
@@ -241,7 +266,7 @@ bool Echiquier::create( Ui::MainWindow *& _ui ) {
 	this->placerPiece(&PionNoirHuit);
 	//_ui->pionNoirPion8->move( 420, 155 );
 
-	return true;
+	return this;
 }
 
 bool Echiquier::placerPiece( Piece * p ) {

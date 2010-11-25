@@ -17,7 +17,11 @@
 		public:
 			Echiquier();
 			Piece * getPiece( int x, int y );
-			bool create( Ui::MainWindow *& _ui );
+			Piece * getPiece( int i );
+			void setPiece( int x, int y, Piece * p );
+			void setPiece( int i, Piece * p );
+
+			Echiquier * create( Ui::MainWindow *& _ui );
 			bool placerPiece( Piece * p );
 			bool deplacerPiece( Piece * p, int x, int y );
 			bool deplacerPiece( int xd, int yd, int xf, int yf );
