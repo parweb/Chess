@@ -1,8 +1,11 @@
 #if !defined Piece_h
 	#define Piece_h
 
+	#include <iostream>
 	#include <QString>
 	#include <QLabel>
+
+	#include "Echiquier.h"
 
 	class Echiquier;
 
@@ -16,7 +19,7 @@
 			int m_x;
 			int m_y;
 			bool m_white;
-			QLabel *_QLabel;
+			QLabel * _QLabel;
 
 		public:
 			Piece();
@@ -31,8 +34,8 @@
 			bool isWhite();
 			bool isBlack();
 			virtual QString getType();
-			virtual void setQLabel( QLabel* & _ui );
-			virtual QLabel* getQLabel();
+			virtual void setQLabel( QLabel * & _ui );
+			virtual QLabel * getQLabel();
 	};
 
 	class Roi : public Piece {
