@@ -11,7 +11,16 @@
 using namespace std;
 
 Piece::Piece () {
-	// ne fait rien => objet instancie mais non valide.
+	//
+}
+
+Piece::Piece ( QWidget * parent ) : QLabel( parent ) {
+	this->setGeometry(QRect(-100, -100, 50, 50));
+	this->setScaledContents(true);
+	this->setAlignment(Qt::AlignCenter);
+
+	this->setFixedSize( 50, 50 );
+	this->move( 60, 100 );
 }
 
 Piece::Piece ( int x, int y, bool isWhite ) {
@@ -55,11 +64,6 @@ void Piece::moveTo ( int x, int y ) {
 	this->move( xf, yf );
 }
 
-bool Piece::mouvementValide ( Echiquier & e, int x, int y ) {
-	cout << "mouvementValide de Piece" << endl;
-	return ( e.getPiece( x, y ) != NULL ) ;
-}
-
 QString Piece::getType () {
 	return ( ( m_white ) ? "Blanc" : "Noir" ) ;
 }
@@ -80,112 +84,410 @@ bool Piece::isBlack () {
 	return !m_white;
 }
 
-void Piece::setQLabel( QLabel *& _QL ) {
-	this->_QLabel = _QL;
-}
-
-QLabel * Piece::getQLabel() {
-	return this->_QLabel;
-}
-
-Roi::Roi ( bool isWhite ) {
-	m_x = 5;
-	m_y = ( isWhite ? 8 : 1 ) ;
-	m_white = isWhite;
-}
-
-bool Roi::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Roi" << endl;
-	e.getPiece( x, y ) ;
-
+bool Piece::mouvementValide( int x, int y, Echiquier & echiquier ) {
 	return true;
+}
+
+bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
+	int gp = 0;
+
+	for ( int i = 1; i < 9; i++ ) {
+		for ( int j = 1; j < 9; j++ ) {
+			if ( color == this->m_white ) {
+				if ( ( echiquier.getPiece( i, j ) != NULL ) && ( echiquier.getPiece( i, j )->isWhite() != this->m_white ) && ( echiquier.getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier.getPiece( i, j )->getType() != "roi_noir" ) ) {
+					if ( echiquier.getPiece( i, j )->mouvementValide( x, y, echiquier ) ) {
+						gp += 1;
+					}
+					else {
+						continue;
+					}
+				}
+				else {
+					continue;
+				}
+			}
+			else {
+				if ( ( echiquier.getPiece( i, j ) != NULL ) && ( echiquier.getPiece( i, j )->isWhite() == this->m_white ) && ( echiquier.getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier.getPiece( i, j )->getType() != "roi_noir" ) ) {
+					if ( echiquier.getPiece( i, j )->mouvementValide( x, y, echiquier ) ) {
+						gp += 1;
+					}
+					else {
+						continue;
+					}
+				}
+
+				else {
+					continue;
+				}
+			}
+		}
+	}
+
+	if ( gp > 0 ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+Roi::Roi ( bool isWhite, QWidget * parent ) : Piece( parent ) {
+	this->m_x = 5;
+	this->m_y = ( isWhite ? 8 : 1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+bool Roi::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	int tmp_x = x - this->x();
+	int tmp_y = y - this->y();
+
+	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
+	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+
+	if ( ( ( x == this->x() ) && ( tmp_y == 1 ) ) || ( ( tmp_x == 1 ) && ( this->y() == y ) ) || ( ( tmp_x == 1 ) && ( tmp_y == 1 ) ) ) {
+		this->miseEchec( this->x(), this->y(), this->m_white, echiquier );
+
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 QString Roi::getType () {
-	return ( ( m_white ) ? "RoiBlanc" : "RoiNoir" ) ;
+	return ( ( this->m_white ) ? "roi_blanc" : "roi_noir" );
 }
 
-Reine::Reine ( bool isWhite ) {
-	m_x = 4;
-	m_y = ( isWhite ? 8:1 ) ;
-	m_white = isWhite;
+Reine::Reine ( bool isWhite, QWidget * parent ) : Piece( parent ) {
+	this->m_x = 4;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
-bool Reine::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Reine" << endl;
-	e.getPiece( x, y ) ;
+bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	int tmp_x = x - this->x();
+	int tmp_y = y - this->y();
 
-	return true;
+	int tmp_n1, tmp_n2;
+
+	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
+	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+
+	if ( ( ( tmp_x == 2 ) && ( tmp_y == 1 ) ) || ( ( tmp_x == 1 ) && ( tmp_y == 2 ) ) ){
+		return false;
+	}
+	else {
+		if ( tmp_x == tmp_y ) {
+			int i = 0;
+
+			tmp_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
+
+			if ( this->x() < x ) {
+				tmp_n1 = this->x() + 1;
+
+				while ( tmp_n1 < x ) {
+					if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL ) i += 1;
+
+					tmp_n1 += 1;
+					tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+				}
+			}
+			else {
+				tmp_n1 = this->x() - 1;
+
+				while ( x < tmp_n1 ) {
+					if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL ) i += 1;
+
+					tmp_n1 -= 1;
+					tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+				}
+			}
+
+			if ( i > 0 ) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+		else if ( ( x == this->x() ) || ( y == this->y() ) ) {
+			if ( x == this->x() ) {
+				tmp_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
+				tmp_n2 = ( y > this->y() ) ? y : this->y();
+
+				int i = 0;
+				while ( tmp_n1 < tmp_n2 ) {
+					if ( echiquier.getPiece( this->x(), tmp_n1 ) != NULL ) {
+						i += 1;
+					}
+
+					tmp_n1 += 1;
+				}
+
+				if ( i > 0 ) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+
+			else if ( y == this->y() ) {
+				tmp_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
+				tmp_n2 = ( x > this->x() ) ? x : this->x();
+
+				int i = 0;
+				while ( tmp_n1 < tmp_n2 ) {
+					if ( echiquier.getPiece( tmp_n1, this->y() ) != NULL ) i += 1;
+					tmp_n1 += 1;
+				}
+
+				if ( i > 0 ) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 }
 
 QString Reine::getType () {
-	return ( ( m_white ) ? "DameBlanche" : "DameNoire" ) ;
+	return ( ( this->m_white ) ? "reine_blanc" : "reine_noir" );
 }
 
-Fou::Fou ( bool isWhite, int x ) {
-	m_x = x;
-	m_y = ( isWhite ? 8:1 ) ;
-	m_white = isWhite;
+Fou::Fou ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
-bool Fou::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Fou" << endl;
-	e.getPiece( x, y ) ;
+bool Fou::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	int tmp_x = x - this->x();
+	int tmp_y = y - this->y();
 
-	return true;
+	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
+	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1) ;
+
+	int tmp_n1, tmp_n2;
+
+	if ( tmp_x == tmp_y ) {
+		int i = 0;
+
+		tmp_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
+
+		if ( this->x() < x ) {
+			tmp_n1 = this->x() + 1;
+
+			while ( tmp_n1 < x ) {
+				if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL) {
+					i += 1;
+				}
+
+				tmp_n1 += 1;
+				tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+			}
+		}
+		else {
+			tmp_n1 = this->x() - 1;
+
+			while ( x < tmp_n1 ) {
+				if ( echiquier.getPiece( tmp_n1, tmp_n2 )!= NULL ) i += 1;
+
+				tmp_n1 -= 1;
+				tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+			}
+		}
+
+		if ( i > 0 ) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	else {
+		return false;
+	}
 }
 
 QString Fou::getType () {
-	return ( ( m_white ) ? "FouBlanc" : "FouNoir" ) ;
+	return ( ( this->m_white ) ? "fou_blanc" : "fou_noir" );
 }
 
-Tour::Tour ( bool isWhite, int x ) {
-	m_x = x;
-	m_y = ( isWhite ? 8:1 ) ;
-	m_white = isWhite;
+Tour::Tour ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
-bool Tour::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Tour" << endl;
-	e.getPiece( x, y ) ;
+bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	int tmp_n1, tmp_n2;
 
-	return true;
+	if ( ( x == this->x() ) || ( y == this->y() ) ) {
+		if ( x == this->x() ) {
+			tmp_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
+			tmp_n2 = ( y > this->y() ) ? y : this->y();
+
+			int i = 0;
+			while ( tmp_n1 < tmp_n2 ) {
+				if ( echiquier.getPiece( this->x(), tmp_n1 ) != NULL ) {
+					i += 1;
+				}
+
+				tmp_n1 += 1;
+			}
+
+			if ( i > 0 ) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		else if ( y == this->y() ) {
+			tmp_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
+			tmp_n2 = ( x > this->x() ) ? x : this->x();
+
+			int i = 0;
+			while ( tmp_n1 < tmp_n2 ) {
+				if ( echiquier.getPiece( tmp_n1, this->y() ) != NULL ) {
+					i += 1;
+				}
+
+				tmp_n1 += 1;
+			}
+
+			if ( i > 0 ) {
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
 }
 
 QString Tour::getType () {
-	return ( ( m_white ) ? "TourBlanche" : "TourNoire" ) ;
+	return ( ( this->m_white ) ? "tour_blanc" : "tour_noir" );
 }
 
-Cavalier::Cavalier ( bool isWhite, int x ) {
+Cavalier::Cavalier ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
 	m_x = x;
-	m_y = ( isWhite ? 8:1 ) ;
-	m_white = isWhite;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
-bool Cavalier::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Cavalier" << endl;
-	e.getPiece( x, y ) ;
+bool Cavalier::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	int tmp_x = x - this->x();
+	int tmp_y = y - this->y();
 
-	return true;
+	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
+	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+
+	if ( ( tmp_x == 1 || tmp_x == 2 ) && ( tmp_y == 1 || tmp_y == 2 ) ) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 QString Cavalier::getType () {
-	return ( ( m_white ) ? "CavalierBlanc" : "CavalierNoir" ) ;
+	return ( ( this->m_white ) ? "cavalier_blanc" : "cavalier_noir" );
 }
 
-Pion::Pion ( bool isWhite, int x ) {
-	m_x = x;
-	m_y = ( isWhite ? 7:2 ) ;
-	m_white = isWhite;
+Pion::Pion ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 7:2 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
-bool Pion::mouvementValide ( Echiquier &e, int x, int y ) {
-	cout << "Mouvement Valide Pion" << endl;
-	e.getPiece( x, y ) ;
-
-	return true;
+bool Pion::mouvementValide ( Echiquier & echiquier, int x, int y ) {
+	if ( echiquier.getPiece( x, y ) == NULL ) {
+		if ( this->m_white ) {
+			if ( this->y() == 2 ) {
+				if ( ( x == this->x() ) && ( ( y - this->y() == 2 ) || ( y - this->y() == 1 ) ) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				if ( ( x == this->x() ) && ( y - this->y() == 1 ) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		else {
+			if ( this->y() == 7 ) {
+				if ( ( x == this->x() ) && ( ( this->y() - y == 1 ) || ( this->y() - y == 2 ) ) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else {
+				if ( ( x == this->x() ) && ( this->y() - y == 1 ) ) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+	}
+	else {
+		if ( this->m_white ) {
+			if ( (this->x() != x ) && ( y - this->y() == 1 ) ) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			if ( ( this->x() != x ) && ( this->y() - y == 1 ) ) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
 }
 
 QString Pion::getType () {
-	return ( ( m_white ) ? "PionBlanc" : "PionNoir" ) ;
+	return ( ( this->m_white ) ? "pion_blanc" : "pion_noir" );
 }
