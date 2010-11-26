@@ -21,10 +21,5 @@
 		private:
 			Echiquier * _Echiquier;
 			QWidget * centralWidget;
-
-		private slots:
-			void on_boutonMove_clicked();
-			void on_boutonReload_clicked();
-			void on_buttonNew_clicked();
 	};
 #endif // MAINWINDOW_H

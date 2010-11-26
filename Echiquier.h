@@ -13,8 +13,6 @@
 	#include <iostream>
 
 	class Piece;
-	class JoueurBlanc;
-	class JoueurNoir;
 
 	class Echiquier : QWidget {
 		Q_OBJECT
@@ -25,8 +23,8 @@
 			QWidget * _damier;
 			QGridLayout * _pions;
 
-			JoueurBlanc _JoueurBlanc;
-			JoueurNoir _JoueurNoir;
+//			JoueurBlanc _JoueurBlanc;
+//			JoueurNoir _JoueurNoir;
 
 		public:
 			Echiquier();
@@ -57,17 +55,15 @@
 
 			QPoint * getCoord( int i );
 
-			QWidget * getDamier ( QWidget * parent );
-			void getLegendX ( QWidget * parent );
-			void getLegendY ( QWidget * parent );
-			void getPions ( QWidget * parent );
+			QWidget * getDamier ();
 
-			void getButtonNew ( QWidget * parent );
+			void getLegendX ();
+			void getLegendY ();
+			void getPions ();
 
+			void getButtonNew ();
 
 			QFont getLegendFont ();
-
-			QWidget * getQWidget( QWidget *& _centralWidget );
 
 		public slots:
 			void clicked_buttonNew();

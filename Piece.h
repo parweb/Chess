@@ -11,11 +11,6 @@
 	class Echiquier;
 
 	class Piece : public QLabel {
-		/*static const int _X = 70;
-		static const int _Y = 105;
-		static const int _EX = 50;
-		static const int _EY = 50;*/
-
 		protected:
 			int m_x;
 			int m_y;

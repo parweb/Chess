@@ -8,20 +8,17 @@ Echiquier::Echiquier( ) {
 	}
 }
 
-Echiquier::Echiquier( QWidget * parent = 0 ) : QWidget( parent ) {
+Echiquier::Echiquier( QWidget * parent ) : QWidget( parent ) {
+	this->centralWidget = parent;
 	this->setObjectName( "echiquier" );
 
-	this->getButtonNew( parent );
+	this->getButtonNew();
+	this->getLegendX();
+	this->getLegendY();
 
-	this->getLegendX( parent );
-	this->getLegendY( parent );
+	this->_damier = this->getDamier();
 
-	this->_damier = this->getDamier( parent );
-
-	//this->getPions( this->_damier );
-
-	this->_JoueurBlanc.placerPieces( this );
-	this->_JoueurNoir.placerPieces( this );
+	this->getPions();
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -74,122 +71,6 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
-/*
-void Echiquier::create( ) {
-	//JoueurBlanc JoueurBlanc;
-	//JoueurNoir JoueurNoir;
-
-	//JoueurBlanc.placerPieces( * this );
-	//JoueurNoir.placerPieces( * this );
-
-	// -------------------------------- Roi
-
-	Roi * RoiBlanc = new Roi( true, this );
-
-	Roi * RoiNoir = new Roi( false, this );
-	this->placerPiece( RoiNoir );
-
-	// -------------------------------- Reine
-
-	Reine * ReineBlanc = new Reine( true, this );
-	this->placerPiece( ReineBlanc );
-
-	Reine * ReineNoir = new Reine( false, this );
-	this->placerPiece( ReineNoir );
-
-	// -------------------------------- Tour
-
-	Tour * TourBlancUn = new Tour( true, 1, this );
-	this->placerPiece( TourBlancUn );
-
-	Tour * TourBlancDeux = new Tour( true, 8, this );
-	this->placerPiece( TourBlancDeux );
-
-	Tour * TourNoirUn = new Tour( false, 1, this );
-	this->placerPiece( TourNoirUn );
-
-	Tour * TourNoirDeux = new Tour( false, 8, this );
-	this->placerPiece( TourNoirDeux );
-
-	// -------------------------------- Cavalier
-
-	Cavalier * CavalierBlancUn = new Cavalier( true, 2, this );
-	this->placerPiece( CavalierBlancUn );
-
-	Cavalier * CavalierBlancDeux = new Cavalier( true, 7, this );
-	this->placerPiece( CavalierBlancDeux );
-
-	Cavalier * CavalierNoirUn = new Cavalier( false, 2, this );
-	this->placerPiece( CavalierNoirUn );
-
-	Cavalier * CavalierNoirDeux = new Cavalier( false, 7, this );
-	this->placerPiece( CavalierNoirDeux );
-
-	// -------------------------------- Fou
-
-	Fou * FouBlancUn = new Fou( true, 3, this );
-	this->placerPiece( FouBlancUn );
-
-	Fou * FouBlancDeux = new Fou( true, 6, this );
-	this->placerPiece( FouBlancDeux );
-
-	Fou * FouNoirUn = new Fou( false, 3, this );
-	this->placerPiece( FouNoirUn );
-
-	Fou * FouNoirDeux = new Fou( false, 6, this );
-	this->placerPiece( FouNoirDeux );
-
-	// -------------------------------- Pion
-
-	Pion * PionBlancUn = new Pion( true, 1, this );
-	this->placerPiece( PionBlancUn );
-
-	Pion * PionBlancDeux = new Pion( true, 2, this );
-	this->placerPiece( PionBlancDeux );
-
-	Pion * PionBlancTrois = new Pion( true, 3, this );
-	this->placerPiece( PionBlancTrois );
-
-	Pion * PionBlancQuatre = new Pion( true, 4, this );
-	this->placerPiece( PionBlancQuatre );
-
-	Pion * PionBlancCinq = new Pion( true, 5, this );
-	this->placerPiece( PionBlancCinq );
-
-	Pion * PionBlancSix = new Pion( true, 6, this );
-	this->placerPiece( PionBlancSix );
-
-	Pion * PionBlancSept = new Pion( true, 7, this );
-	this->placerPiece( PionBlancSept );
-
-	Pion * PionBlancHuit = new Pion( true, 8, this );
-	this->placerPiece( PionBlancHuit );
-
-	Pion * PionNoirUn = new Pion( false, 1, this );
-	this->placerPiece( PionNoirUn );
-
-	Pion * PionNoirDeux = new Pion( false, 2, this );
-	this->placerPiece( PionNoirDeux );
-
-	Pion * PionNoirTrois = new Pion( false, 3, this );
-	this->placerPiece( PionNoirTrois );
-
-	Pion * PionNoirQuatre = new Pion( false, 4, this );
-	this->placerPiece( PionNoirQuatre );
-
-	Pion * PionNoirCinq = new Pion( false, 5, this );
-	this->placerPiece( PionNoirCinq );
-
-	Pion * PionNoirSix = new Pion( false, 6, this );
-	this->placerPiece( PionNoirSix );
-
-	Pion * PionNoirSept = new Pion( false, 7, this );
-	this->placerPiece( PionNoirSept );
-
-	Pion * PionNoirHuit = new Pion( false, 8, this );
-	this->placerPiece( PionNoirHuit );
-}
-*/
 bool Echiquier::placerPiece( int x, int y ) {
 	return this->placerPiece( this->getPiece( x, y ) );
 }
@@ -274,8 +155,8 @@ QPoint * Echiquier::getCoord( int i ) {
 	return new QPoint( x, y );
 }
 
-QWidget * Echiquier::getDamier ( QWidget * parent ) {
-	QWidget * conteneur = new QWidget( parent );
+QWidget * Echiquier::getDamier () {
+	QWidget * conteneur = new QWidget( this->getCentralWidget() );
 	conteneur->resize( 400, 400 );
 	conteneur->move( 60, 100 );
 
@@ -308,7 +189,7 @@ QWidget * Echiquier::getDamier ( QWidget * parent ) {
 	return conteneur;
 }
 
-void Echiquier::getLegendX ( QWidget * parent ) {
+void Echiquier::getLegendX () {
 	QMap<int, QString> abscisse;
 
 	abscisse.insert( 0, "A" );
@@ -324,7 +205,7 @@ void Echiquier::getLegendX ( QWidget * parent ) {
 	int Ecart = 50;
 	int Arrive = 0;
 
-	QWidget * conteneur = new QWidget( parent );
+	QWidget * conteneur = new QWidget( this->getCentralWidget() );
 	conteneur->resize( 400, 50 );
 	conteneur->move( 60, 50 );
 
@@ -341,12 +222,12 @@ void Echiquier::getLegendX ( QWidget * parent ) {
 	}
 }
 
-void Echiquier::getLegendY ( QWidget * parent ) {
+void Echiquier::getLegendY () {
 	int Depart = 0;
 	int Ecart = 50;
 	int Arrive = 0;
 
-	QWidget * conteneur = new QWidget( parent );
+	QWidget * conteneur = new QWidget( this->getCentralWidget() );
 	conteneur->resize( 50, 400 );
 	conteneur->move( 10, 100 );
 
@@ -363,8 +244,8 @@ void Echiquier::getLegendY ( QWidget * parent ) {
 	}
 }
 
-void Echiquier::getPions ( QWidget * parent ) {
-	QGridLayout * pions = new QGridLayout( parent );
+void Echiquier::getPions () {
+	QGridLayout * pions = new QGridLayout( this->getCentralWidget() );
 
 	for ( int i = 0; i < 8; i++ ) {
 		pions->setRowMinimumHeight( i, 50 );
@@ -391,17 +272,18 @@ QFont Echiquier::getLegendFont ( ) {
 	return font;
 }
 
-void Echiquier::getButtonNew ( QWidget * parent ) {
-	QPushButton * buttonNew = new QPushButton( parent );
+void Echiquier::getButtonNew () {
+	QPushButton * buttonNew = new QPushButton( this->getCentralWidget() );
 	buttonNew->setObjectName( "boutonNew" );
 	buttonNew->setGeometry( QRect( 80, 20, 110, 32) );
 	buttonNew->setText( "Nouveau" );
 
-	QObject::connect( buttonNew, SIGNAL( clicked( )), this, SLOT( clicked_buttonNew( )) );
+	QObject::connect( buttonNew, SIGNAL( clicked() ), this, SLOT( clicked_buttonNew() ) );
 }
 
 void Echiquier::clicked_buttonNew( ) {
-	this->create();
+	cout << "clicked_buttonNew";
+	//this->create();
 
 	/*
 	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
