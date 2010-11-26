@@ -8,11 +8,6 @@
 	#include <iostream>
 
 	#include "Echiquier.h"
-	#include "ui_mainwindow.h"
-
-	namespace Ui {
-		class MainWindow;
-	}
 
 	class Echiquier;
 
@@ -24,7 +19,6 @@
 			~MainWindow();
 
 		private:
-			Ui::MainWindow * ui;
 			Echiquier * _Echiquier;
 			QWidget * centralWidget;
 

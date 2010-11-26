@@ -2,12 +2,13 @@
 	#define Echiquier_h
 
 	#include <iostream>
+	#include <QGraphicsView>
 	#include <QMessageBox>
+	#include <QPushButton>
 
 	#include "Piece.h"
 	#include "Joueur.h"
-	#include "MainWindow.h"
-	#include "ui_mainwindow.h"
+	#include "mainwindow.h"
 
 	class Piece;
 

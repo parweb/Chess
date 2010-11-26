@@ -2,7 +2,7 @@
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
+MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent) {
 	this->centralWidget = new QWidget( this );
 	this->centralWidget->setObjectName("centralWidget");
 
@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget * parent) : QMainWindow(parent), ui(new Ui::MainW
 
 MainWindow::~MainWindow()
 {
-	delete ui;
 	delete this->_Echiquier;
 }
 
@@ -26,7 +25,7 @@ void MainWindow::on_buttonNew_clicked()
 
 	if ( pseudo1 != "" && pseudo2 != "" ) {
 		// si les pseudos on bien été rempli alors on active le bouton save
-		ui->boutonSave->setEnabled(true);
+//		ui->boutonSave->setEnabled(true);
 
 		// on initialise toutes les pieces sur léchiquier
 		//this->_Echiquier->create( ui );
@@ -34,7 +33,7 @@ void MainWindow::on_buttonNew_clicked()
 	}
 	else {
 		// si les pseudos sont pas rempli on désactive le bouton save
-		ui->boutonSave->setEnabled(false);
+//		ui->boutonSave->setEnabled(false);
 	}
 
 	//QMessageBox::information(this, "sdg", "dsjgse");
@@ -69,7 +68,7 @@ void MainWindow::on_boutonMove_clicked()
 	abscisse.insert("f", 6);
 	abscisse.insert("g", 7);
 	abscisse.insert("h", 8);
-
+/*
 	QString origine = ui->pieceOrigine->text();
 	QString origine1 = origine.left(1);
 	QString origine2 = origine.right(1);
@@ -120,4 +119,5 @@ void MainWindow::on_boutonMove_clicked()
 	//unepiece->getQLabel()->move( xf, yf );
 
 	this->_Echiquier->deplacerPiece( xd, yd, xf, yf );
+*/
 }
