@@ -3,22 +3,25 @@
 using namespace std;
 
 Echiquier::Echiquier( ) {
-	//
+	for ( int i = 0; i < 64; ++i ) {
+		m_cases[ i ] = NULL;
+	}
 }
 
 Echiquier::Echiquier( QWidget * parent = 0 ) : QWidget( parent ) {
 	this->setObjectName( "echiquier" );
-	this->centralWidget = parent;
 
 	this->getButtonNew( parent );
 
 	this->getLegendX( parent );
-
 	this->getLegendY( parent );
 
 	this->_damier = this->getDamier( parent );
 
-	this->getPions( this->_damier );
+	//this->getPions( this->_damier );
+
+	this->_JoueurBlanc.placerPieces( this );
+	this->_JoueurNoir.placerPieces( this );
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -46,6 +49,10 @@ Piece * Echiquier::getPiece( int i ) {
 	return NULL;
 }
 
+QWidget * Echiquier::getCentralWidget() {
+	return this->centralWidget;
+}
+
 void Echiquier::setPiece( int i, Piece * p ) {
 	if ( ( i >= 0 ) && ( i <= 63 ) ) {
 		this->m_cases[ i ] = p;
@@ -67,6 +74,7 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
+/*
 void Echiquier::create( ) {
 	//JoueurBlanc JoueurBlanc;
 	//JoueurNoir JoueurNoir;
@@ -76,147 +84,119 @@ void Echiquier::create( ) {
 
 	// -------------------------------- Roi
 
-	Roi * RoiBlanc = new Roi( true, this->centralWidget );
-	this->enleverPiece( 5, 8 );
-	this->placerPiece( RoiBlanc );
+	Roi * RoiBlanc = new Roi( true, this );
 
-	Roi * RoiNoir = new Roi( false, this->centralWidget );
-	this->enleverPiece( 5,1 );
+	Roi * RoiNoir = new Roi( false, this );
 	this->placerPiece( RoiNoir );
 
 	// -------------------------------- Reine
 
-	Reine * ReineBlanc = new Reine( true, this->centralWidget );
-	this->enleverPiece( 4,8 );
+	Reine * ReineBlanc = new Reine( true, this );
 	this->placerPiece( ReineBlanc );
 
-	Reine * ReineNoir = new Reine( false, this->centralWidget );
-	this->enleverPiece( 4,1 );
+	Reine * ReineNoir = new Reine( false, this );
 	this->placerPiece( ReineNoir );
 
 	// -------------------------------- Tour
 
-	Tour * TourBlancUn = new Tour( true, 1, this->centralWidget );
-	this->enleverPiece( 1,8 );
+	Tour * TourBlancUn = new Tour( true, 1, this );
 	this->placerPiece( TourBlancUn );
 
-	Tour * TourBlancDeux = new Tour( true, 8, this->centralWidget );
-	this->enleverPiece( 8,8 );
+	Tour * TourBlancDeux = new Tour( true, 8, this );
 	this->placerPiece( TourBlancDeux );
 
-	Tour * TourNoirUn = new Tour( false, 1, this->centralWidget );
-	this->enleverPiece( 1,1 );
+	Tour * TourNoirUn = new Tour( false, 1, this );
 	this->placerPiece( TourNoirUn );
 
-	Tour * TourNoirDeux = new Tour( false, 8, this->centralWidget );
-	this->enleverPiece( 8,1 );
+	Tour * TourNoirDeux = new Tour( false, 8, this );
 	this->placerPiece( TourNoirDeux );
 
 	// -------------------------------- Cavalier
 
-	Cavalier * CavalierBlancUn = new Cavalier( true, 2, this->centralWidget );
-	this->enleverPiece( 2,8 );
+	Cavalier * CavalierBlancUn = new Cavalier( true, 2, this );
 	this->placerPiece( CavalierBlancUn );
 
-	Cavalier * CavalierBlancDeux = new Cavalier( true, 7, this->centralWidget );
-	this->enleverPiece( 7,8 );
+	Cavalier * CavalierBlancDeux = new Cavalier( true, 7, this );
 	this->placerPiece( CavalierBlancDeux );
 
-	Cavalier * CavalierNoirUn = new Cavalier( false, 2, this->centralWidget );
-	this->enleverPiece( 2,1 );
+	Cavalier * CavalierNoirUn = new Cavalier( false, 2, this );
 	this->placerPiece( CavalierNoirUn );
 
-	Cavalier * CavalierNoirDeux = new Cavalier( false, 7, this->centralWidget );
-	this->enleverPiece( 7,1 );
+	Cavalier * CavalierNoirDeux = new Cavalier( false, 7, this );
 	this->placerPiece( CavalierNoirDeux );
 
 	// -------------------------------- Fou
 
-	Fou * FouBlancUn = new Fou( true, 3, this->centralWidget );
-	this->enleverPiece( 3,8 );
+	Fou * FouBlancUn = new Fou( true, 3, this );
 	this->placerPiece( FouBlancUn );
 
-	Fou * FouBlancDeux = new Fou( true, 6, this->centralWidget );
-	this->enleverPiece( 6,8 );
+	Fou * FouBlancDeux = new Fou( true, 6, this );
 	this->placerPiece( FouBlancDeux );
 
-	Fou * FouNoirUn = new Fou( false, 3, this->centralWidget );
-	this->enleverPiece( 3,1 );
+	Fou * FouNoirUn = new Fou( false, 3, this );
 	this->placerPiece( FouNoirUn );
 
-	Fou * FouNoirDeux = new Fou( false, 6, this->centralWidget );
-	this->enleverPiece( 6,1 );
+	Fou * FouNoirDeux = new Fou( false, 6, this );
 	this->placerPiece( FouNoirDeux );
 
 	// -------------------------------- Pion
 
-	Pion * PionBlancUn = new Pion( true, 1, this->centralWidget );
-	this->enleverPiece( 1,7 );
+	Pion * PionBlancUn = new Pion( true, 1, this );
 	this->placerPiece( PionBlancUn );
 
-	Pion * PionBlancDeux = new Pion( true, 2, this->centralWidget );
-	this->enleverPiece( 2,7 );
+	Pion * PionBlancDeux = new Pion( true, 2, this );
 	this->placerPiece( PionBlancDeux );
 
-	Pion * PionBlancTrois = new Pion( true, 3, this->centralWidget );
-	this->enleverPiece( 3,7 );
+	Pion * PionBlancTrois = new Pion( true, 3, this );
 	this->placerPiece( PionBlancTrois );
 
-	Pion * PionBlancQuatre = new Pion( true, 4, this->centralWidget );
-	this->enleverPiece( 4,7 );
+	Pion * PionBlancQuatre = new Pion( true, 4, this );
 	this->placerPiece( PionBlancQuatre );
 
-	Pion * PionBlancCinq = new Pion( true, 5, this->centralWidget );
-	this->enleverPiece( 5,7 );
+	Pion * PionBlancCinq = new Pion( true, 5, this );
 	this->placerPiece( PionBlancCinq );
 
-	Pion * PionBlancSix = new Pion( true, 6, this->centralWidget );
-	this->enleverPiece( 6,7 );
+	Pion * PionBlancSix = new Pion( true, 6, this );
 	this->placerPiece( PionBlancSix );
 
-	Pion * PionBlancSept = new Pion( true, 7, this->centralWidget );
-	this->enleverPiece( 7,7 );
+	Pion * PionBlancSept = new Pion( true, 7, this );
 	this->placerPiece( PionBlancSept );
 
-	Pion * PionBlancHuit = new Pion( true, 8, this->centralWidget );
-	this->enleverPiece( 8,7 );
+	Pion * PionBlancHuit = new Pion( true, 8, this );
 	this->placerPiece( PionBlancHuit );
 
-	Pion * PionNoirUn = new Pion( false, 1, this->centralWidget );
-	this->enleverPiece( 1,2 );
+	Pion * PionNoirUn = new Pion( false, 1, this );
 	this->placerPiece( PionNoirUn );
 
-	Pion * PionNoirDeux = new Pion( false, 2, this->centralWidget );
-	this->enleverPiece( 2,2 );
+	Pion * PionNoirDeux = new Pion( false, 2, this );
 	this->placerPiece( PionNoirDeux );
 
-	Pion * PionNoirTrois = new Pion( false, 3, this->centralWidget );
-	this->enleverPiece( 3,2 );
+	Pion * PionNoirTrois = new Pion( false, 3, this );
 	this->placerPiece( PionNoirTrois );
 
-	Pion * PionNoirQuatre = new Pion( false, 4, this->centralWidget );
-	this->enleverPiece( 4,2 );
+	Pion * PionNoirQuatre = new Pion( false, 4, this );
 	this->placerPiece( PionNoirQuatre );
 
-	Pion * PionNoirCinq = new Pion( false, 5, this->centralWidget );
-	this->enleverPiece( 5,2 );
+	Pion * PionNoirCinq = new Pion( false, 5, this );
 	this->placerPiece( PionNoirCinq );
 
-	Pion * PionNoirSix = new Pion( false, 6, this->centralWidget );
-	this->enleverPiece( 6,2 );
+	Pion * PionNoirSix = new Pion( false, 6, this );
 	this->placerPiece( PionNoirSix );
 
-	Pion * PionNoirSept = new Pion( false, 7, this->centralWidget );
-	this->enleverPiece( 7,2 );
+	Pion * PionNoirSept = new Pion( false, 7, this );
 	this->placerPiece( PionNoirSept );
 
-	Pion * PionNoirHuit = new Pion( false, 8, this->centralWidget );
-	this->enleverPiece( 8,2 );
+	Pion * PionNoirHuit = new Pion( false, 8, this );
 	this->placerPiece( PionNoirHuit );
 }
-
+*/
 bool Echiquier::placerPiece( int x, int y ) {
 	return this->placerPiece( this->getPiece( x, y ) );
+}
+
+
+bool Echiquier::placerPiece( Piece & p ) {
+	return this->placerPiece( this->getPiece( p.x(), p.y() ) );
 }
 
 bool Echiquier::placerPiece( Piece * p ) {
@@ -324,6 +304,8 @@ QWidget * Echiquier::getDamier ( QWidget * parent ) {
 			place->setStyleSheet( QString::fromUtf8( "background:rgb( 100, 100, 100 );") );
 		}
 	}
+
+	return conteneur;
 }
 
 void Echiquier::getLegendX ( QWidget * parent ) {
@@ -419,7 +401,7 @@ void Echiquier::getButtonNew ( QWidget * parent ) {
 }
 
 void Echiquier::clicked_buttonNew( ) {
-	this->create( );
+	this->create();
 
 	/*
 	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );

@@ -15,12 +15,11 @@ Piece::Piece () {
 }
 
 Piece::Piece ( QWidget * parent ) : QLabel( parent ) {
-	this->setGeometry(QRect(-100, -100, 50, 50));
+	this->setGeometry(QRect(0, 0, 50, 50));
 	this->setScaledContents(true);
 	this->setAlignment(Qt::AlignCenter);
 
 	this->setFixedSize( 50, 50 );
-	this->move( 60, 100 );
 }
 
 Piece::Piece ( int x, int y, bool isWhite ) {
@@ -84,8 +83,84 @@ bool Piece::isBlack () {
 	return !m_white;
 }
 
-bool Piece::mouvementValide( int x, int y, Echiquier & echiquier ) {
-	return true;
+Roi::Roi () {}
+Reine::Reine () {}
+Tour::Tour () {}
+Fou::Fou () {}
+Cavalier::Cavalier () {}
+
+Roi::Roi ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	this->m_x = 5;
+	this->m_y = ( isWhite ? 8 : 1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
+}
+
+Reine::Reine ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	this->m_x = 4;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	m_x = x;
+	this->m_y = ( isWhite ? 8:1 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+Pion::Pion ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+	this->m_x = x;
+	this->m_y = ( isWhite ? 7:2 );
+	this->m_white = isWhite;
+
+	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+}
+
+QString Roi::getType () {
+	return ( ( this->m_white ) ? "roi_blanc" : "roi_noir" );
+}
+
+QString Reine::getType () {
+	return ( ( this->m_white ) ? "reine_blanc" : "reine_noir" );
+}
+
+QString Fou::getType () {
+	return ( ( this->m_white ) ? "fou_blanc" : "fou_noir" );
+}
+
+QString Tour::getType () {
+	return ( ( this->m_white ) ? "tour_blanc" : "tour_noir" );
+}
+
+QString Cavalier::getType () {
+	return ( ( this->m_white ) ? "cavalier_blanc" : "cavalier_noir" );
+}
+
+QString Pion::getType () {
+	return ( ( this->m_white ) ? "pion_blanc" : "pion_noir" );
 }
 
 bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
@@ -131,12 +206,8 @@ bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
 	}
 }
 
-Roi::Roi ( bool isWhite, QWidget * parent ) : Piece( parent ) {
-	this->m_x = 5;
-	this->m_y = ( isWhite ? 8 : 1 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+bool Piece::mouvementValide( int x, int y, Echiquier & echiquier ) {
+	return true;
 }
 
 bool Roi::mouvementValide ( Echiquier & echiquier, int x, int y ) {
@@ -154,18 +225,6 @@ bool Roi::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	else {
 		return false;
 	}
-}
-
-QString Roi::getType () {
-	return ( ( this->m_white ) ? "roi_blanc" : "roi_noir" );
-}
-
-Reine::Reine ( bool isWhite, QWidget * parent ) : Piece( parent ) {
-	this->m_x = 4;
-	this->m_y = ( isWhite ? 8:1 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
 bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
@@ -264,18 +323,6 @@ bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-QString Reine::getType () {
-	return ( ( this->m_white ) ? "reine_blanc" : "reine_noir" );
-}
-
-Fou::Fou ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
-	this->m_x = x;
-	this->m_y = ( isWhite ? 8:1 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
-}
-
 bool Fou::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	int tmp_x = x - this->x();
 	int tmp_y = y - this->y();
@@ -323,18 +370,6 @@ bool Fou::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	else {
 		return false;
 	}
-}
-
-QString Fou::getType () {
-	return ( ( this->m_white ) ? "fou_blanc" : "fou_noir" );
-}
-
-Tour::Tour ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
-	this->m_x = x;
-	this->m_y = ( isWhite ? 8:1 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
 bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
@@ -390,18 +425,6 @@ bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-QString Tour::getType () {
-	return ( ( this->m_white ) ? "tour_blanc" : "tour_noir" );
-}
-
-Cavalier::Cavalier ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
-	m_x = x;
-	this->m_y = ( isWhite ? 8:1 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
-}
-
 bool Cavalier::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	int tmp_x = x - this->x();
 	int tmp_y = y - this->y();
@@ -415,18 +438,6 @@ bool Cavalier::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	else {
 		return false;
 	}
-}
-
-QString Cavalier::getType () {
-	return ( ( this->m_white ) ? "cavalier_blanc" : "cavalier_noir" );
-}
-
-Pion::Pion ( bool isWhite, int x, QWidget * parent ) : Piece( parent ) {
-	this->m_x = x;
-	this->m_y = ( isWhite ? 7:2 );
-	this->m_white = isWhite;
-
-	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
 }
 
 bool Pion::mouvementValide ( Echiquier & echiquier, int x, int y ) {
@@ -486,8 +497,4 @@ bool Pion::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 			}
 		}
 	}
-}
-
-QString Pion::getType () {
-	return ( ( this->m_white ) ? "pion_blanc" : "pion_noir" );
 }

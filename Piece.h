@@ -42,42 +42,48 @@
 
 	class Roi : public Piece {
 		public:
-			Roi(bool isWhite, QWidget * parent );
+			Roi();
+			Roi(bool isWhite, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};
 
 	class Reine : public Piece {
 		public:
-			Reine(bool isWhite, QWidget * parent );
+			Reine();
+			Reine(bool isWhite, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};
 
 	class Pion : public Piece {
 		public:
-			Pion(bool isWhite, int nb, QWidget * parent );
+			Pion();
+			Pion(bool isWhite, int nb, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};
 
 	class Fou : public Piece {
 		public:
-			Fou(bool isWhite, int nb, QWidget * parent );
+			Fou();
+			Fou(bool isWhite, int nb, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};
 
 	class Cavalier : public Piece {
 		public:
-			Cavalier(bool isWhite, int nb, QWidget * parent );
+			Cavalier();
+			Cavalier(bool isWhite, int nb, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};
 
 	class Tour : public Piece {
 		public:
-			Tour(bool isWhite, int nb, QWidget * parent );
+			Tour();
+			Tour(bool isWhite, int nb, Echiquier * lEchiquier );
 			bool mouvementValide(Echiquier &e, int x, int y);
 			QString getType();
 	};

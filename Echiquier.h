@@ -1,7 +1,5 @@
 #if !defined Echiquier_h
 	#define Echiquier_h
-
-	#include <iostream>
 	#include <QGraphicsView>
 	#include <QMessageBox>
 	#include <QPushButton>
@@ -12,7 +10,11 @@
 	#include "Piece.h"
 	#include "Joueur.h"
 
+	#include <iostream>
+
 	class Piece;
+	class JoueurBlanc;
+	class JoueurNoir;
 
 	class Echiquier : QWidget {
 		Q_OBJECT
@@ -23,12 +25,17 @@
 			QWidget * _damier;
 			QGridLayout * _pions;
 
+			JoueurBlanc _JoueurBlanc;
+			JoueurNoir _JoueurNoir;
+
 		public:
 			Echiquier();
 			Echiquier( QWidget * parent );
 
 			Piece * getPiece( int x, int y );
 			Piece * getPiece( int i );
+
+			QWidget * getCentralWidget();
 
 			void setPiece( int x, int y, Piece * p );
 			void setPiece( int i, Piece * p );
@@ -37,6 +44,7 @@
 
 			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );
+			bool placerPiece( Piece & p );
 
 			bool deplacerPiece( Piece * p, int x, int y );
 			bool deplacerPiece( int xd, int yd, int xf, int yf );
