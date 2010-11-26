@@ -2,19 +2,23 @@
 
 using namespace std;
 
-Echiquier::Echiquier() {
+Echiquier::Echiquier( ) {
 	//
 }
 
 Echiquier::Echiquier( QWidget * parent = 0 ) : QWidget( parent ) {
-	this->setObjectName("echiquier");
-	Echiquier::getButtonNew( parent );
+	this->setObjectName( "echiquier" );
+	this->centralWidget = parent;
 
-	Echiquier::getLegendX( parent );
+	this->getButtonNew( parent );
 
-	Echiquier::getLegendY( parent );
+	this->getLegendX( parent );
 
-	Echiquier::getDamier( parent );
+	this->getLegendY( parent );
+
+	this->_damier = this->getDamier( parent );
+
+	this->getPions( this->_damier );
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -63,221 +67,152 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
-void Echiquier::create( QWidget * parent ) {
+void Echiquier::create( ) {
 	//JoueurBlanc JoueurBlanc;
-	//JoueurNoir  JoueurNoir;
+	//JoueurNoir JoueurNoir;
 
 	//JoueurBlanc.placerPieces( * this );
 	//JoueurNoir.placerPieces( * this );
 
-	parent->resize(10, 10);
-
 	// -------------------------------- Roi
-/*
-	Roi RoiBlanc(true);
-	//RoiBlanc.setQLabel( _ui->pionBlancRoi );
-	this->enleverPiece(5,8);
-	this->placerPiece(&RoiBlanc);
-	//_ui->pionBlancRoi->move( 215, 455 );
 
-	MainWindow->centralWidget();
+	Roi * RoiBlanc = new Roi( true, this->centralWidget );
+	this->enleverPiece( 5, 8 );
+	this->placerPiece( RoiBlanc );
 
-	Roi RoiNoir(false);
-	//RoiNoir.setQLabel( _ui->pionNoirRoi );
-	this->enleverPiece(5,1);
-	this->placerPiece(&RoiNoir);
-	//_ui->pionNoirRoi->move( 215, 105 );
+	Roi * RoiNoir = new Roi( false, this->centralWidget );
+	this->enleverPiece( 5,1 );
+	this->placerPiece( RoiNoir );
 
 	// -------------------------------- Reine
 
-	Reine ReineBlanc(true);
-	//ReineBlanc.setQLabel( _ui->pionBlancReine );
-	this->enleverPiece(4,8);
-	this->placerPiece(&ReineBlanc);
-	//_ui->pionBlancReine->move( 270, 455 );
+	Reine * ReineBlanc = new Reine( true, this->centralWidget );
+	this->enleverPiece( 4,8 );
+	this->placerPiece( ReineBlanc );
 
-	Reine ReineNoir(false);
-	//ReineNoir.setQLabel( _ui->pionNoirReine );
-	this->enleverPiece(4,1);
-	this->placerPiece(&ReineNoir);
-	//_ui->pionNoirReine->move( 270, 105 );
+	Reine * ReineNoir = new Reine( false, this->centralWidget );
+	this->enleverPiece( 4,1 );
+	this->placerPiece( ReineNoir );
 
 	// -------------------------------- Tour
 
-	Tour TourBlancUn(true, 1);
-	//TourBlancUn.setQLabel( _ui->pionBlancTour1 );
-	this->enleverPiece(1,8);
-	this->placerPiece(&TourBlancUn);
-	//_ui->pionBlancTour1->move( 70, 455 );
+	Tour * TourBlancUn = new Tour( true, 1, this->centralWidget );
+	this->enleverPiece( 1,8 );
+	this->placerPiece( TourBlancUn );
 
-	Tour TourBlancDeux(true, 8);
-	//TourBlancDeux.setQLabel( _ui->pionBlancTour2 );
-	this->enleverPiece(8,8);
-	this->placerPiece(&TourBlancDeux);
-	//_ui->pionBlancTour2->move( 420, 455 );
+	Tour * TourBlancDeux = new Tour( true, 8, this->centralWidget );
+	this->enleverPiece( 8,8 );
+	this->placerPiece( TourBlancDeux );
 
-	Tour TourNoirUn(false, 1);
-	//TourNoirUn.setQLabel( _ui->pionNoirTour1 );
-	this->enleverPiece(1,1);
-	this->placerPiece(&TourNoirUn);
-	//_ui->pionNoirTour1->move( 70, 105 );
+	Tour * TourNoirUn = new Tour( false, 1, this->centralWidget );
+	this->enleverPiece( 1,1 );
+	this->placerPiece( TourNoirUn );
 
-	Tour TourNoirDeux(false, 8);
-	//TourNoirDeux.setQLabel( _ui->pionNoirTour2 );
-	this->enleverPiece(8,1);
-	this->placerPiece(&TourNoirDeux);
-	//_ui->pionNoirTour2->move( 420, 105 );
+	Tour * TourNoirDeux = new Tour( false, 8, this->centralWidget );
+	this->enleverPiece( 8,1 );
+	this->placerPiece( TourNoirDeux );
 
 	// -------------------------------- Cavalier
 
-	Cavalier CavalierBlancUn(true, 2);
-	//CavalierBlancUn.setQLabel( _ui->pionBlancCavalier1 );
-	this->enleverPiece(2,8);
-	this->placerPiece(&CavalierBlancUn);
-	//_ui->pionBlancCavalier1->move( 120, 455 );
+	Cavalier * CavalierBlancUn = new Cavalier( true, 2, this->centralWidget );
+	this->enleverPiece( 2,8 );
+	this->placerPiece( CavalierBlancUn );
 
-	Cavalier CavalierBlancDeux(true, 7);
-	//CavalierBlancDeux.setQLabel( _ui->pionBlancCavalier2 );
-	this->enleverPiece(7,8);
-	this->placerPiece(&CavalierBlancDeux);
-	//_ui->pionBlancCavalier2->move( 370, 455 );
+	Cavalier * CavalierBlancDeux = new Cavalier( true, 7, this->centralWidget );
+	this->enleverPiece( 7,8 );
+	this->placerPiece( CavalierBlancDeux );
 
-	Cavalier CavalierNoirUn(false, 2);
-	//CavalierNoirUn.setQLabel( _ui->pionNoirCavalier1 );
-	this->enleverPiece(2,1);
-	this->placerPiece(&CavalierNoirUn);
-	//_ui->pionNoirCavalier1->move( 120, 105 );
+	Cavalier * CavalierNoirUn = new Cavalier( false, 2, this->centralWidget );
+	this->enleverPiece( 2,1 );
+	this->placerPiece( CavalierNoirUn );
 
-	Cavalier CavalierNoirDeux(false, 7);
-	//CavalierNoirDeux.setQLabel( _ui->pionNoirCavalier2 );
-	this->enleverPiece(7,1);
-	this->placerPiece(&CavalierNoirDeux);
-	//_ui->pionNoirCavalier2->move( 370, 105 );
+	Cavalier * CavalierNoirDeux = new Cavalier( false, 7, this->centralWidget );
+	this->enleverPiece( 7,1 );
+	this->placerPiece( CavalierNoirDeux );
 
 	// -------------------------------- Fou
 
-	Fou FouBlancUn(true, 3);
-	//FouBlancUn.setQLabel( _ui->pionBlancFou1 );
-	this->enleverPiece(3,8);
-	this->placerPiece(&FouBlancUn);
-	//_ui->pionBlancFou1->move( 170, 455 );
+	Fou * FouBlancUn = new Fou( true, 3, this->centralWidget );
+	this->enleverPiece( 3,8 );
+	this->placerPiece( FouBlancUn );
 
-	Fou FouBlancDeux(true, 6);
-	//FouBlancDeux.setQLabel( _ui->pionBlancFou2 );
-	this->enleverPiece(6,8);
-	this->placerPiece(&FouBlancDeux);
-	//_ui->pionBlancFou2->move( 320, 455 );
+	Fou * FouBlancDeux = new Fou( true, 6, this->centralWidget );
+	this->enleverPiece( 6,8 );
+	this->placerPiece( FouBlancDeux );
 
-	Fou FouNoirUn(false, 3);
-	//FouNoirUn.setQLabel( _ui->pionNoirFou1 );
-	this->enleverPiece(3,1);
-	this->placerPiece(&FouNoirUn);
-	//_ui->pionNoirFou1->move( 170, 105 );
+	Fou * FouNoirUn = new Fou( false, 3, this->centralWidget );
+	this->enleverPiece( 3,1 );
+	this->placerPiece( FouNoirUn );
 
-	Fou FouNoirDeux(false, 6);
-	//FouNoirDeux.setQLabel( _ui->pionNoirFou2 );
-	this->enleverPiece(6,1);
-	this->placerPiece(&FouNoirDeux);
-	//_ui->pionNoirFou2->move( 320, 105 );
+	Fou * FouNoirDeux = new Fou( false, 6, this->centralWidget );
+	this->enleverPiece( 6,1 );
+	this->placerPiece( FouNoirDeux );
 
 	// -------------------------------- Pion
 
-	Pion PionBlancUn(true, 1);
-	//PionBlancUn.setQLabel( _ui->pionBlancPion1 );
-	this->enleverPiece(1,7);
-	this->placerPiece(&PionBlancUn);
-	//_ui->pionBlancPion1->move( 70, 405 );
+	Pion * PionBlancUn = new Pion( true, 1, this->centralWidget );
+	this->enleverPiece( 1,7 );
+	this->placerPiece( PionBlancUn );
 
-	Pion PionBlancDeux(true, 2);
-	//PionBlancDeux.setQLabel( _ui->pionBlancPion2 );
-	this->enleverPiece(2,7);
-	this->placerPiece(&PionBlancDeux);
-	//_ui->pionBlancPion2->move( 120, 405 );
+	Pion * PionBlancDeux = new Pion( true, 2, this->centralWidget );
+	this->enleverPiece( 2,7 );
+	this->placerPiece( PionBlancDeux );
 
-	Pion PionBlancTrois(true, 3);
-	//PionBlancTrois.setQLabel( _ui->pionBlancPion3 );
-	this->enleverPiece(3,7);
-	this->placerPiece(&PionBlancTrois);
-	//_ui->pionBlancPion3->move( 170, 405 );
+	Pion * PionBlancTrois = new Pion( true, 3, this->centralWidget );
+	this->enleverPiece( 3,7 );
+	this->placerPiece( PionBlancTrois );
 
-	Pion PionBlancQuatre(true, 4);
-	//PionBlancQuatre.setQLabel( _ui->pionBlancPion4 );
-	this->enleverPiece(4,7);
-	this->placerPiece(&PionBlancQuatre);
-	//_ui->pionBlancPion4->move( 220, 405 );
+	Pion * PionBlancQuatre = new Pion( true, 4, this->centralWidget );
+	this->enleverPiece( 4,7 );
+	this->placerPiece( PionBlancQuatre );
 
-	Pion PionBlancCinq(true, 5);
-	//PionBlancCinq.setQLabel( _ui->pionBlancPion5 );
-	this->enleverPiece(5,7);
-	this->placerPiece(&PionBlancCinq);
-	//_ui->pionBlancPion5->move( 270, 405 );
+	Pion * PionBlancCinq = new Pion( true, 5, this->centralWidget );
+	this->enleverPiece( 5,7 );
+	this->placerPiece( PionBlancCinq );
 
-	Pion PionBlancSix(true, 6);
-	//PionBlancSix.setQLabel( _ui->pionBlancPion6 );
-	this->enleverPiece(6,7);
-	this->placerPiece(&PionBlancSix);
-	//_ui->pionBlancPion6->move( 320, 405 );
+	Pion * PionBlancSix = new Pion( true, 6, this->centralWidget );
+	this->enleverPiece( 6,7 );
+	this->placerPiece( PionBlancSix );
 
-	Pion PionBlancSept(true, 7);
-	//PionBlancSept.setQLabel( _ui->pionBlancPion7 );
-	this->enleverPiece(7,7);
-	this->placerPiece(&PionBlancSept);
-	//_ui->pionBlancPion7->move( 370, 405 );
+	Pion * PionBlancSept = new Pion( true, 7, this->centralWidget );
+	this->enleverPiece( 7,7 );
+	this->placerPiece( PionBlancSept );
 
-	Pion PionBlancHuit(true, 8);
-	//PionBlancHuit.setQLabel( _ui->pionBlancPion8 );
-	this->enleverPiece(8,7);
-	this->placerPiece(&PionBlancHuit);
-	//_ui->pionBlancPion8->move( 420, 405 );
+	Pion * PionBlancHuit = new Pion( true, 8, this->centralWidget );
+	this->enleverPiece( 8,7 );
+	this->placerPiece( PionBlancHuit );
 
-	Pion PionNoirUn(false, 1);
-	//PionNoirUn.setQLabel( _ui->pionNoirPion1 );
-	this->enleverPiece(1,2);
-	this->placerPiece(&PionNoirUn);
-	//_ui->pionNoirPion1->move( 70, 155 );
+	Pion * PionNoirUn = new Pion( false, 1, this->centralWidget );
+	this->enleverPiece( 1,2 );
+	this->placerPiece( PionNoirUn );
 
-	Pion PionNoirDeux(false, 2);
-	//PionNoirDeux.setQLabel( _ui->pionNoirPion2 );
-	this->enleverPiece(2,2);
-	this->placerPiece(&PionNoirDeux);
-	//_ui->pionNoirPion2->move( 120, 155 );
+	Pion * PionNoirDeux = new Pion( false, 2, this->centralWidget );
+	this->enleverPiece( 2,2 );
+	this->placerPiece( PionNoirDeux );
 
-	Pion PionNoirTrois(false, 3);
-	//PionNoirTrois.setQLabel( _ui->pionNoirPion3 );
-	this->enleverPiece(3,2);
-	this->placerPiece(&PionNoirTrois);
-	//_ui->pionNoirPion3->move( 170, 155 );
+	Pion * PionNoirTrois = new Pion( false, 3, this->centralWidget );
+	this->enleverPiece( 3,2 );
+	this->placerPiece( PionNoirTrois );
 
-	Pion PionNoirQuatre(false, 4);
-	//PionNoirQuatre.setQLabel( _ui->pionNoirPion4 );
-	this->enleverPiece(4,2);
-	this->placerPiece(&PionNoirQuatre);
-	//_ui->pionNoirPion4->move( 220, 155 );
+	Pion * PionNoirQuatre = new Pion( false, 4, this->centralWidget );
+	this->enleverPiece( 4,2 );
+	this->placerPiece( PionNoirQuatre );
 
-	Pion PionNoirCinq(false, 5);
-	//PionNoirCinq.setQLabel( _ui->pionNoirPion5 );
-	this->enleverPiece(5,2);
-	this->placerPiece(&PionNoirCinq);
-	//_ui->pionNoirPion5->move( 270, 155 );
+	Pion * PionNoirCinq = new Pion( false, 5, this->centralWidget );
+	this->enleverPiece( 5,2 );
+	this->placerPiece( PionNoirCinq );
 
-	Pion PionNoirSix(false, 6);
-	//PionNoirSix.setQLabel( _ui->pionNoirPion6 );
-	this->enleverPiece(6,2);
-	this->placerPiece(&PionNoirSix);
-	//_ui->pionNoirPion6->move( 320, 155 );
+	Pion * PionNoirSix = new Pion( false, 6, this->centralWidget );
+	this->enleverPiece( 6,2 );
+	this->placerPiece( PionNoirSix );
 
-	Pion PionNoirSept(false, 7);
-	//PionNoirSept.setQLabel( _ui->pionNoirPion7 );
-	this->enleverPiece(7,2);
-	this->placerPiece(&PionNoirSept);
-	//_ui->pionNoirPion7->move( 370, 155 );
+	Pion * PionNoirSept = new Pion( false, 7, this->centralWidget );
+	this->enleverPiece( 7,2 );
+	this->placerPiece( PionNoirSept );
 
-	Pion PionNoirHuit(false, 8);
-	//PionNoirHuit.setQLabel( _ui->pionNoirPion8 );
-	this->enleverPiece(8,2);
-	this->placerPiece(&PionNoirHuit);
-	//_ui->pionNoirPion8->move( 420, 155 );
-*/
+	Pion * PionNoirHuit = new Pion( false, 8, this->centralWidget );
+	this->enleverPiece( 8,2 );
+	this->placerPiece( PionNoirHuit );
 }
 
 bool Echiquier::placerPiece( int x, int y ) {
@@ -286,17 +221,14 @@ bool Echiquier::placerPiece( int x, int y ) {
 
 bool Echiquier::placerPiece( Piece * p ) {
 	if (
-		( p->x() >= 1 ) && ( p->x() <= 8 )
-		&& ( p->y() >= 1 ) && ( p->y() <= 8 )
+		( p->x( ) >= 1 ) && ( p->x( ) <= 8 )
+		&& ( p->y( ) >= 1 ) && ( p->y( ) <= 8 )
 		&& ( p != NULL )
 	) {
-		int i = getCase( p->x(), p->y() );
+		int i = getCase( p->x( ), p->y( ) );
 		this->setPiece( i, p );
 
-		//QLabel * plop = p->getQLabel();
-		//plop->move( xf, yf );
-
-		p->moveTo( p->x(), p->y() );
+		p->moveTo( p->x( ), p->y( ) );
 
 		return true;
 	}
@@ -310,7 +242,7 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 		( x >= 1 ) && ( x <= 8 ) &&
 		( y >= 1 ) && ( y <= 8 )
 	) {
-		this->enleverPiece( p->x(), p->y() );
+		this->enleverPiece( p->x( ), p->y( ) );
 		return this->placerPiece( p );
 	}
 
@@ -336,10 +268,10 @@ bool Echiquier::enleverPiece( int x, int y ) {
 
 bool Echiquier::enleverPiece( Piece * p ) {
 	if (
-		( p->x() >= 1 ) && ( p->x() <= 8 ) &&
-		( p->y() >= 1 ) && ( p->y() <= 8 )
+		( p->x( ) >= 1 ) && ( p->x( ) <= 8 ) &&
+		( p->y( ) >= 1 ) && ( p->y( ) <= 8 )
 	) {
-		return this->enleverPiece( p->x(), p->y() );
+		return this->enleverPiece( p->x( ), p->y( ) );
 	}
 
 	return false;
@@ -350,7 +282,7 @@ int Echiquier::getCase( int x, int y ) {
 }
 
 int Echiquier::getCase( Piece * p ) {
-	return getCase( p->x(), p->y() );
+	return getCase( p->x( ), p->y( ) );
 }
 
 QPoint * Echiquier::getCoord( int i ) {
@@ -362,7 +294,7 @@ QPoint * Echiquier::getCoord( int i ) {
 	return new QPoint( x, y );
 }
 
-void Echiquier::getDamier ( QWidget * parent ) {
+QWidget * Echiquier::getDamier ( QWidget * parent ) {
 	QWidget * conteneur = new QWidget( parent );
 	conteneur->resize( 400, 400 );
 	conteneur->move( 60, 100 );
@@ -379,17 +311,17 @@ void Echiquier::getDamier ( QWidget * parent ) {
 
 		int xf, yf;
 
-		xf = xi + ( exi * ( coord->x() - 1 ) );
-		yf = yi + ( eyi * ( coord->y() - 1 ) );
+		xf = xi + ( exi * ( coord->x( ) - 1 ) );
+		yf = yi + ( eyi * ( coord->y( ) - 1 ) );
 
 		QGraphicsView * place = new QGraphicsView( conteneur );
 
-		place->setObjectName("CASE_"+QString::number( i+1 ));
+		place->setObjectName( "CASE_"+QString::number( i+1 ) );
 		place->setGeometry( QRect( xf, yf, exi, eyi ) );
 		place->setAutoFillBackground( false );
 
-		if ( ( coord->x() + coord->y() ) % 2 ) {
-			place->setStyleSheet(QString::fromUtf8("background:rgb(100, 100, 100);"));
+		if ( ( coord->x( ) + coord->y( ) ) % 2 ) {
+			place->setStyleSheet( QString::fromUtf8( "background:rgb( 100, 100, 100 );") );
 		}
 	}
 }
@@ -397,14 +329,14 @@ void Echiquier::getDamier ( QWidget * parent ) {
 void Echiquier::getLegendX ( QWidget * parent ) {
 	QMap<int, QString> abscisse;
 
-	abscisse.insert(0, "A");
-	abscisse.insert(1, "B");
-	abscisse.insert(2, "C");
-	abscisse.insert(3, "D");
-	abscisse.insert(4, "E");
-	abscisse.insert(5, "F");
-	abscisse.insert(6, "G");
-	abscisse.insert(7, "H");
+	abscisse.insert( 0, "A" );
+	abscisse.insert( 1, "B" );
+	abscisse.insert( 2, "C" );
+	abscisse.insert( 3, "D" );
+	abscisse.insert( 4, "E" );
+	abscisse.insert( 5, "F" );
+	abscisse.insert( 6, "G" );
+	abscisse.insert( 7, "H" );
 
 	int Depart = 0;
 	int Ecart = 50;
@@ -419,10 +351,10 @@ void Echiquier::getLegendX ( QWidget * parent ) {
 
 		Arrive = Depart + ( Ecart * i );
 
-		label->setObjectName("_"+abscisse.value( i ));
+		label->setObjectName( "_"+abscisse.value( i ) );
 		label->setText( abscisse.value( i ) );
 		label->setGeometry( QRect( Arrive, 0, 50, 50 ) );
-		label->setFont( this->getLegendFont() );
+		label->setFont( this->getLegendFont( ) );
 		label->setAlignment( Qt::AlignCenter );
 	}
 }
@@ -441,15 +373,36 @@ void Echiquier::getLegendY ( QWidget * parent ) {
 
 		Arrive = Depart + ( Ecart * i );
 
-		label->setObjectName("_"+QString::number( i+1 ));
+		label->setObjectName( "_"+QString::number( i+1 ) );
 		label->setText( QString::number( i+1 ) );
 		label->setGeometry( QRect( 0, Arrive, 50, 50 ) );
-		label->setFont( this->getLegendFont() );
+		label->setFont( this->getLegendFont( ) );
 		label->setAlignment( Qt::AlignCenter );
 	}
 }
 
-QFont Echiquier::getLegendFont () {
+void Echiquier::getPions ( QWidget * parent ) {
+	QGridLayout * pions = new QGridLayout( parent );
+
+	for ( int i = 0; i < 8; i++ ) {
+		pions->setRowMinimumHeight( i, 50 );
+		pions->setColumnMinimumWidth( i, 50 );
+	}
+
+	pions->setMargin( 0 );
+	pions->setContentsMargins(0, 0, 0, 0);
+
+	pions->layout()->setMargin(0);
+	pions->layout()->setContentsMargins(0, 0, 0, 0);
+
+	pions->setHorizontalSpacing(0);
+	pions->setVerticalSpacing(0);
+	pions->layout()->setSizeConstraint( pions->layout()->SetFixedSize );
+
+	this->_pions = pions;
+}
+
+QFont Echiquier::getLegendFont ( ) {
 	QFont font;
 	font.setPointSize( 30 );
 
@@ -458,13 +411,34 @@ QFont Echiquier::getLegendFont () {
 
 void Echiquier::getButtonNew ( QWidget * parent ) {
 	QPushButton * buttonNew = new QPushButton( parent );
-	buttonNew->setObjectName("boutonNew");
-	buttonNew->setGeometry(QRect(80, 20, 110, 32));
-	buttonNew->setText("Nouveau");
+	buttonNew->setObjectName( "boutonNew" );
+	buttonNew->setGeometry( QRect( 80, 20, 110, 32) );
+	buttonNew->setText( "Nouveau" );
 
-	QObject::connect( buttonNew, SIGNAL(clicked()), this, SLOT(clicked_buttonNew()) );
+	QObject::connect( buttonNew, SIGNAL( clicked( )), this, SLOT( clicked_buttonNew( )) );
 }
 
-void Echiquier::clicked_buttonNew() {
-	QMessageBox::information(this, "debug", "plop");
+void Echiquier::clicked_buttonNew( ) {
+	this->create( );
+
+	/*
+	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
+	QString pseudo2 = QInputDialog::getText( this, "Joueur 2", "Nom du joueur 2 :" );
+
+	if ( pseudo1 != "" && pseudo2 != "" ) {
+		// si les pseudos on bien été rempli alors on active le bouton save
+//		ui->boutonSave->setEnabled( true );
+
+		// on initialise toutes les pieces sur léchiquier
+		//this->_Echiquier->create( ui );
+		this->create( );
+	}
+	else {
+		// si les pseudos sont pas rempli on désactive le bouton save
+//		ui->boutonSave->setEnabled( false );
+	}
+
+	//QMessageBox::information( this, "sdg", "dsjgse" );
+
+	*/
 }

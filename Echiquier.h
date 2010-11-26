@@ -5,18 +5,23 @@
 	#include <QGraphicsView>
 	#include <QMessageBox>
 	#include <QPushButton>
+	#include <QMap>
+	#include <QInputDialog>
+	#include <QGridLayout>
 
 	#include "Piece.h"
 	#include "Joueur.h"
-	#include "mainwindow.h"
 
 	class Piece;
 
 	class Echiquier : QWidget {
-		//Q_OBJECT
+		Q_OBJECT
 
 		private:
 			Piece * m_cases[ 64 ];
+			QWidget * centralWidget;
+			QWidget * _damier;
+			QGridLayout * _pions;
 
 		public:
 			Echiquier();
@@ -28,7 +33,7 @@
 			void setPiece( int x, int y, Piece * p );
 			void setPiece( int i, Piece * p );
 
-			void create( QWidget * parent );
+			void create();
 
 			bool placerPiece( int x, int y );
 			bool placerPiece( Piece * p );
@@ -44,9 +49,10 @@
 
 			QPoint * getCoord( int i );
 
-			void getDamier ( QWidget * parent );
+			QWidget * getDamier ( QWidget * parent );
 			void getLegendX ( QWidget * parent );
 			void getLegendY ( QWidget * parent );
+			void getPions ( QWidget * parent );
 
 			void getButtonNew ( QWidget * parent );
 
