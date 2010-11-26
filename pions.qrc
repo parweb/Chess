@@ -1,16 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>Pion/cavalier_blanc.png</file>
-        <file>Pion/cavalier_noir.png</file>
-        <file>Pion/fou_blanc.png</file>
-        <file>Pion/fou_noir.png</file>
-        <file>Pion/pion_blanc.png</file>
-        <file>Pion/pion_noir.png</file>
-        <file>Pion/reine_blanc.png</file>
-        <file>Pion/reine_noir.png</file>
-        <file>Pion/roi_blanc.png</file>
-        <file>Pion/roi_noir.png</file>
-        <file>Pion/tour_blanc.png</file>
-        <file>Pion/tour_noir.png</file>
+        <file>Pions/tour_noir.png</file>
+        <file>Pions/tour_blanc.png</file>
+        <file>Pions/roi_noir.png</file>
+        <file>Pions/roi_blanc.png</file>
+        <file>Pions/reine_noir.png</file>
+        <file>Pions/reine_blanc.png</file>
+        <file>Pions/pion_noir.png</file>
+        <file>Pions/pion_blanc.png</file>
+        <file>Pions/fou_noir.png</file>
+        <file>Pions/fou_blanc.png</file>
+        <file>Pions/cavalier_noir.png</file>
+        <file>Pions/cavalier_blanc.png</file>
     </qresource>
 </RCC>

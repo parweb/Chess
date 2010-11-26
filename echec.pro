@@ -10,4 +10,4 @@ INCLUDEPATH += .
 # Input
 HEADERS += Echiquier.h Joueur.h mainwindow.h Piece.h
 SOURCES += Echiquier.cxx Joueur.cxx main.cpp mainwindow.cpp Piece.cxx
-RESOURCES += pions.qrc Pion/pions.qrc
+RESOURCES += pions.qrc
