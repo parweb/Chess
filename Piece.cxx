@@ -15,9 +15,9 @@ Piece::Piece () {
 }
 
 Piece::Piece ( QWidget * parent ) : QLabel( parent ) {
-	this->setGeometry(QRect(0, 0, 50, 50));
-	this->setScaledContents(true);
-	this->setAlignment(Qt::AlignCenter);
+	this->setGeometry( QRect( 0, 0, 50, 50 ) );
+	this->setScaledContents( true );
+	this->setAlignment( Qt::AlignCenter );
 
 	this->setFixedSize( 50, 50 );
 }
@@ -60,7 +60,7 @@ void Piece::moveTo ( int x, int y ) {
 	int xf = xi + ( exi * ( this->m_x - 1 ) );
 	int yf = yi + ( eyi * ( this->m_y - 1 ) );
 
-	this->move( xf, yf );
+	//this->move( xf, yf );
 }
 
 QString Piece::getType () {
@@ -89,12 +89,13 @@ Tour::Tour () {}
 Fou::Fou () {}
 Cavalier::Cavalier () {}
 
-Roi::Roi ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Roi::Roi ( bool isWhite, Echiquier * lEchiquier )  {
 	this->m_x = 5;
 	this->m_y = ( isWhite ? 8 : 1 );
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+	//this->move( 80, 80 );
 
 	lEchiquier->placerPiece( this );
 }
@@ -105,6 +106,8 @@ Reine::Reine ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCe
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
 }
 
 Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
@@ -113,6 +116,8 @@ Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->ge
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
 }
 
 Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
@@ -121,6 +126,8 @@ Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
 }
 
 Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
@@ -129,6 +136,8 @@ Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEch
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
 }
 
 Pion::Pion ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
@@ -137,6 +146,8 @@ Pion::Pion ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
+
+	lEchiquier->placerPiece( this );
 }
 
 QString Roi::getType () {

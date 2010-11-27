@@ -21,12 +21,16 @@
 			Piece * m_cases[ 64 ];
 			QWidget * centralWidget;
 			QWidget * _damier;
-			QGridLayout * _pions;
+
+			QLineEdit * _pieceDestination;
+			QLineEdit * _pieceOrigine;
 
 //			JoueurBlanc _JoueurBlanc;
 //			JoueurNoir _JoueurNoir;
 
 		public:
+			QGridLayout * _pions;
+
 			Echiquier();
 			Echiquier( QWidget * parent );
 
@@ -62,10 +66,12 @@
 			void getPions ();
 
 			void getButtonNew ();
+			void getButtonMove ();
 
 			QFont getLegendFont ();
 
 		public slots:
 			void clicked_buttonNew();
+			void clicked_buttonMove();
 	};
 #endif
