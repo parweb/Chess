@@ -23,23 +23,23 @@
 			Piece( const Piece & autre);
 			Piece & operator=(const Piece & autre);
 			void init( int x, int y, bool isWhite );
-			void moveTo( int x, int y );
+			bool moveTo( int x, int y, Echiquier * e );
 			//virtual void moveTo( int x, int y );
-			virtual bool mouvementValide( int x, int y, Echiquier & echiquier );
+			virtual bool mouvementValide( Echiquier * e, int x, int y );
 			int x() const;
 			int y() const;
 			bool isWhite();
 			bool isBlack();
 			virtual QString getType() = 0;
 			void mouseEvent( QMouseEvent * event );
-			bool miseEchec( int x, int y, bool & color, Echiquier & echiquier );
+			bool miseEchec( int x, int y, bool & color, Echiquier * echiquier );
 	};
 
 	class Roi : public Piece {
 		public:
 			Roi();
 			Roi(bool isWhite, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 
@@ -47,7 +47,7 @@
 		public:
 			Reine();
 			Reine(bool isWhite, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 
@@ -55,7 +55,7 @@
 		public:
 			Pion();
 			Pion(bool isWhite, int nb, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 
@@ -63,7 +63,7 @@
 		public:
 			Fou();
 			Fou(bool isWhite, int nb, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 
@@ -71,7 +71,7 @@
 		public:
 			Cavalier();
 			Cavalier(bool isWhite, int nb, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 
@@ -79,7 +79,7 @@
 		public:
 			Tour();
 			Tour(bool isWhite, int nb, Echiquier * lEchiquier );
-			bool mouvementValide(Echiquier &e, int x, int y);
+			bool mouvementValide( Echiquier * e, int x, int y);
 			QString getType();
 	};
 #endif

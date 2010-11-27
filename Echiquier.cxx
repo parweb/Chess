@@ -107,9 +107,20 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 		( x >= 1 ) && ( x <= 8 ) &&
 		( y >= 1 ) && ( y <= 8 )
 	) {
-		this->enleverPiece( p->x(), p->y() );
-		p->moveTo( x, y );
-		return this->placerPiece( p );
+		int old_x = p->x();
+		int old_y = p->y();
+
+		if ( p->moveTo( x, y, this ) ) {
+			this->enleverPiece( p->x(), p->y() );
+
+			return this->placerPiece( p );
+		}
+		else {
+//			p->moveTo( old_x, old_y );
+
+			cout << "Mouvement impossible";
+			return false;
+		}
 	}
 
 	return false;

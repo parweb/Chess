@@ -48,19 +48,11 @@ void Piece::init ( int x, int y, bool isWhite ) {
 	m_white = isWhite;
 }
 
-void Piece::moveTo ( int x, int y ) {
-	this->m_x = x;
-	this->m_y = y;
-
-	int xi = 60;
-	int yi = 100;
-	int exi = 50;
-	int eyi = 50;
-
-	int xf = xi + ( exi * ( this->m_x - 1 ) );
-	int yf = yi + ( eyi * ( this->m_y - 1 ) );
-
-	//this->move( xf, yf );
+bool Piece::moveTo ( int x, int y, Echiquier * e ) {
+	if ( this->mouvementValide( e, x, y ) ) {
+		this->m_x = x;
+		this->m_y = y;
+	}
 }
 
 QString Piece::getType () {
@@ -174,14 +166,14 @@ QString Pion::getType () {
 	return ( ( this->m_white ) ? "pion_blanc" : "pion_noir" );
 }
 
-bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
+bool Piece::miseEchec( int x, int y, bool & color, Echiquier * echiquier ) {
 	int gp = 0;
 
 	for ( int i = 1; i < 9; i++ ) {
 		for ( int j = 1; j < 9; j++ ) {
 			if ( color == this->m_white ) {
-				if ( ( echiquier.getPiece( i, j ) != NULL ) && ( echiquier.getPiece( i, j )->isWhite() != this->m_white ) && ( echiquier.getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier.getPiece( i, j )->getType() != "roi_noir" ) ) {
-					if ( echiquier.getPiece( i, j )->mouvementValide( x, y, echiquier ) ) {
+				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->isWhite() != this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
+					if ( echiquier->getPiece( i, j )->mouvementValide( echiquier, x, y ) ) {
 						gp += 1;
 					}
 					else {
@@ -193,8 +185,8 @@ bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
 				}
 			}
 			else {
-				if ( ( echiquier.getPiece( i, j ) != NULL ) && ( echiquier.getPiece( i, j )->isWhite() == this->m_white ) && ( echiquier.getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier.getPiece( i, j )->getType() != "roi_noir" ) ) {
-					if ( echiquier.getPiece( i, j )->mouvementValide( x, y, echiquier ) ) {
+				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->isWhite() == this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
+					if ( echiquier->getPiece( i, j )->mouvementValide( echiquier, x, y ) ) {
 						gp += 1;
 					}
 					else {
@@ -217,18 +209,18 @@ bool Piece::miseEchec( int x, int y, bool & color, Echiquier & echiquier ) {
 	}
 }
 
-bool Piece::mouvementValide( int x, int y, Echiquier & echiquier ) {
+bool Piece::mouvementValide( Echiquier * echiquier, int x, int y ) {
 	return true;
 }
 
-bool Roi::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	int tmp_x = x - this->x();
-	int tmp_y = y - this->y();
+bool Roi::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	int ecart_x = x - this->x();
+	int ecart_y = y - this->y();
 
-	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
-	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+	ecart_x = ( ecart_x > 0 ) ? ecart_x : ( ecart_x * -1 );
+	ecart_y = ( ecart_y > 0 ) ? ecart_y : ( ecart_y * -1 );
 
-	if ( ( ( x == this->x() ) && ( tmp_y == 1 ) ) || ( ( tmp_x == 1 ) && ( this->y() == y ) ) || ( ( tmp_x == 1 ) && ( tmp_y == 1 ) ) ) {
+	if ( ( ( x == this->x() ) && ( ecart_y == 1 ) ) || ( ( ecart_x == 1 ) && ( this->y() == y ) ) || ( ( ecart_x == 1 ) && ( ecart_y == 1 ) ) ) {
 		this->miseEchec( this->x(), this->y(), this->m_white, echiquier );
 
 		return true;
@@ -238,42 +230,42 @@ bool Roi::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	int tmp_x = x - this->x();
-	int tmp_y = y - this->y();
+bool Reine::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	int ecart_x = x - this->x();
+	int ecart_y = y - this->y();
 
-	int tmp_n1, tmp_n2;
+	int ecart_n1, ecart_n2;
 
-	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
-	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+	ecart_x = ( ecart_x > 0 ) ? ecart_x : ( ecart_x * -1 );
+	ecart_y = ( ecart_y > 0 ) ? ecart_y : ( ecart_y * -1 );
 
-	if ( ( ( tmp_x == 2 ) && ( tmp_y == 1 ) ) || ( ( tmp_x == 1 ) && ( tmp_y == 2 ) ) ){
+	if ( ( ( ecart_x == 2 ) && ( ecart_y == 1 ) ) || ( ( ecart_x == 1 ) && ( ecart_y == 2 ) ) ){
 		return false;
 	}
 	else {
-		if ( tmp_x == tmp_y ) {
+		if ( ecart_x == ecart_y ) {
 			int i = 0;
 
-			tmp_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
+			ecart_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
 
 			if ( this->x() < x ) {
-				tmp_n1 = this->x() + 1;
+				ecart_n1 = this->x() + 1;
 
-				while ( tmp_n1 < x ) {
-					if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL ) i += 1;
+				while ( ecart_n1 < x ) {
+					if ( echiquier->getPiece( ecart_n1, ecart_n2 ) != NULL ) i += 1;
 
-					tmp_n1 += 1;
-					tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+					ecart_n1 += 1;
+					ecart_n2 = ( y > this->y() ) ? ecart_n2 += 1 : ecart_n2 -= 1;
 				}
 			}
 			else {
-				tmp_n1 = this->x() - 1;
+				ecart_n1 = this->x() - 1;
 
-				while ( x < tmp_n1 ) {
-					if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL ) i += 1;
+				while ( x < ecart_n1 ) {
+					if ( echiquier->getPiece( ecart_n1, ecart_n2 ) != NULL ) i += 1;
 
-					tmp_n1 -= 1;
-					tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+					ecart_n1 -= 1;
+					ecart_n2 = ( y > this->y() ) ? ecart_n2 += 1 : ecart_n2 -= 1;
 				}
 			}
 
@@ -287,16 +279,16 @@ bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 
 		else if ( ( x == this->x() ) || ( y == this->y() ) ) {
 			if ( x == this->x() ) {
-				tmp_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
-				tmp_n2 = ( y > this->y() ) ? y : this->y();
+				ecart_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
+				ecart_n2 = ( y > this->y() ) ? y : this->y();
 
 				int i = 0;
-				while ( tmp_n1 < tmp_n2 ) {
-					if ( echiquier.getPiece( this->x(), tmp_n1 ) != NULL ) {
+				while ( ecart_n1 < ecart_n2 ) {
+					if ( echiquier->getPiece( this->x(), ecart_n1 ) != NULL ) {
 						i += 1;
 					}
 
-					tmp_n1 += 1;
+					ecart_n1 += 1;
 				}
 
 				if ( i > 0 ) {
@@ -308,13 +300,13 @@ bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 			}
 
 			else if ( y == this->y() ) {
-				tmp_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
-				tmp_n2 = ( x > this->x() ) ? x : this->x();
+				ecart_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
+				ecart_n2 = ( x > this->x() ) ? x : this->x();
 
 				int i = 0;
-				while ( tmp_n1 < tmp_n2 ) {
-					if ( echiquier.getPiece( tmp_n1, this->y() ) != NULL ) i += 1;
-					tmp_n1 += 1;
+				while ( ecart_n1 < ecart_n2 ) {
+					if ( echiquier->getPiece( ecart_n1, this->y() ) != NULL ) i += 1;
+					ecart_n1 += 1;
 				}
 
 				if ( i > 0 ) {
@@ -334,40 +326,40 @@ bool Reine::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-bool Fou::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	int tmp_x = x - this->x();
-	int tmp_y = y - this->y();
+bool Fou::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	int ecart_x = x - this->x();
+	int ecart_y = y - this->y();
 
-	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
-	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1) ;
+	ecart_x = ( ecart_x > 0 ) ? ecart_x : ( ecart_x * -1 );
+	ecart_y = ( ecart_y > 0 ) ? ecart_y : ( ecart_y * -1) ;
 
-	int tmp_n1, tmp_n2;
+	int ecart_n1, ecart_n2;
 
-	if ( tmp_x == tmp_y ) {
+	if ( ecart_x == ecart_y ) {
 		int i = 0;
 
-		tmp_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
+		ecart_n2 = ( y > this->y() ) ? this->y() + 1 : this->y() - 1;
 
 		if ( this->x() < x ) {
-			tmp_n1 = this->x() + 1;
+			ecart_n1 = this->x() + 1;
 
-			while ( tmp_n1 < x ) {
-				if ( echiquier.getPiece( tmp_n1, tmp_n2 ) != NULL) {
+			while ( ecart_n1 < x ) {
+				if ( echiquier->getPiece( ecart_n1, ecart_n2 ) != NULL) {
 					i += 1;
 				}
 
-				tmp_n1 += 1;
-				tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+				ecart_n1 += 1;
+				ecart_n2 = ( y > this->y() ) ? ecart_n2 += 1 : ecart_n2 -= 1;
 			}
 		}
 		else {
-			tmp_n1 = this->x() - 1;
+			ecart_n1 = this->x() - 1;
 
-			while ( x < tmp_n1 ) {
-				if ( echiquier.getPiece( tmp_n1, tmp_n2 )!= NULL ) i += 1;
+			while ( x < ecart_n1 ) {
+				if ( echiquier->getPiece( ecart_n1, ecart_n2 )!= NULL ) i += 1;
 
-				tmp_n1 -= 1;
-				tmp_n2 = ( y > this->y() ) ? tmp_n2 += 1 : tmp_n2 -= 1;
+				ecart_n1 -= 1;
+				ecart_n2 = ( y > this->y() ) ? ecart_n2 += 1 : ecart_n2 -= 1;
 			}
 		}
 
@@ -383,21 +375,21 @@ bool Fou::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	int tmp_n1, tmp_n2;
+bool Tour::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	int ecart_n1, ecart_n2;
 
 	if ( ( x == this->x() ) || ( y == this->y() ) ) {
 		if ( x == this->x() ) {
-			tmp_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
-			tmp_n2 = ( y > this->y() ) ? y : this->y();
+			ecart_n1 = ( y > this->y() ) ? this->y() + 1 : y + 1;
+			ecart_n2 = ( y > this->y() ) ? y : this->y();
 
 			int i = 0;
-			while ( tmp_n1 < tmp_n2 ) {
-				if ( echiquier.getPiece( this->x(), tmp_n1 ) != NULL ) {
+			while ( ecart_n1 < ecart_n2 ) {
+				if ( echiquier->getPiece( this->x(), ecart_n1 ) != NULL ) {
 					i += 1;
 				}
 
-				tmp_n1 += 1;
+				ecart_n1 += 1;
 			}
 
 			if ( i > 0 ) {
@@ -408,16 +400,16 @@ bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 			}
 		}
 		else if ( y == this->y() ) {
-			tmp_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
-			tmp_n2 = ( x > this->x() ) ? x : this->x();
+			ecart_n1 = ( x > this->x() ) ? this->x() + 1 : x + 1;
+			ecart_n2 = ( x > this->x() ) ? x : this->x();
 
 			int i = 0;
-			while ( tmp_n1 < tmp_n2 ) {
-				if ( echiquier.getPiece( tmp_n1, this->y() ) != NULL ) {
+			while ( ecart_n1 < ecart_n2 ) {
+				if ( echiquier->getPiece( ecart_n1, this->y() ) != NULL ) {
 					i += 1;
 				}
 
-				tmp_n1 += 1;
+				ecart_n1 += 1;
 			}
 
 			if ( i > 0 ) {
@@ -436,14 +428,14 @@ bool Tour::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-bool Cavalier::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	int tmp_x = x - this->x();
-	int tmp_y = y - this->y();
+bool Cavalier::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	int ecart_x = x - this->x();
+	int ecart_y = y - this->y();
 
-	tmp_x = ( tmp_x > 0 ) ? tmp_x : ( tmp_x * -1 );
-	tmp_y = ( tmp_y > 0 ) ? tmp_y : ( tmp_y * -1 );
+	ecart_x = ( ecart_x > 0 ) ? ecart_x : ( ecart_x * -1 );
+	ecart_y = ( ecart_y > 0 ) ? ecart_y : ( ecart_y * -1 );
 
-	if ( ( tmp_x == 1 || tmp_x == 2 ) && ( tmp_y == 1 || tmp_y == 2 ) ) {
+	if ( ( ecart_x == 1 || ecart_x == 2 ) && ( ecart_y == 1 || ecart_y == 2 ) ) {
 		return true;
 	}
 	else {
@@ -451,19 +443,24 @@ bool Cavalier::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 	}
 }
 
-bool Pion::mouvementValide ( Echiquier & echiquier, int x, int y ) {
-	if ( echiquier.getPiece( x, y ) == NULL ) {
-		if ( this->m_white ) {
-			if ( this->y() == 2 ) {
-				if ( ( x == this->x() ) && ( ( y - this->y() == 2 ) || ( y - this->y() == 1 ) ) ) {
-					return true;
-				}
-				else {
-					return false;
-				}
+bool Pion::mouvementValide( Echiquier * echiquier, int x, int y ) {
+	Piece * afterPiece = echiquier->getPiece( x, y );
+
+	if ( afterPiece == NULL ) {
+		if ( x == this->x() ) {
+			int sens = this->m_white ? -1 : 1;
+
+			if ( this->y() + ( 1 * sens ) == y ) {
+				return true;
 			}
 			else {
-				if ( ( x == this->x() ) && ( y - this->y() == 1 ) ) {
+				if (
+					(
+						( this->m_white && this->y() == 7 ) ||
+						( !this->m_white && this->y() == 2 )
+					) &&
+					( this->y() + ( 2 * sens ) == y )
+				) {
 					return true;
 				}
 				else {
@@ -472,40 +469,10 @@ bool Pion::mouvementValide ( Echiquier & echiquier, int x, int y ) {
 			}
 		}
 		else {
-			if ( this->y() == 7 ) {
-				if ( ( x == this->x() ) && ( ( this->y() - y == 1 ) || ( this->y() - y == 2 ) ) ) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
-			else {
-				if ( ( x == this->x() ) && ( this->y() - y == 1 ) ) {
-					return true;
-				}
-				else {
-					return false;
-				}
-			}
+			return false;
 		}
 	}
 	else {
-		if ( this->m_white ) {
-			if ( (this->x() != x ) && ( y - this->y() == 1 ) ) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
-			if ( ( this->x() != x ) && ( this->y() - y == 1 ) ) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
+		return false;
 	}
 }
