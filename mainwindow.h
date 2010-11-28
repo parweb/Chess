@@ -28,3 +28,16 @@
 			QWidget * centralWidget;
 	};
 #endif // MAINWINDOW_H
+
+#ifndef MYGRID_H
+	#define MYGRID_H
+
+	class MyGrid : public QGridLayout {
+		//Q_OBJECT
+
+		public:
+			MyGrid(QWidget * parent = 0);
+		private:
+
+	};
+#endif // MYGRID_H

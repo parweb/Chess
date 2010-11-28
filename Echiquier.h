@@ -9,6 +9,7 @@
 
 	#include "Piece.h"
 	#include "Joueur.h"
+	#include "mainwindow.h"
 
 	#include <iostream>
 

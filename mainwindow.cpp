@@ -15,3 +15,7 @@ MainWindow::~MainWindow()
 {
 	delete this->_Echiquier;
 }
+
+MyGrid::MyGrid( QWidget * parent ) : QGridLayout( parent ) {
+
+}

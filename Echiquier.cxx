@@ -196,7 +196,7 @@ QWidget * Echiquier::getDamier () {
 		}
 	}
 
-	this->_pions = new QGridLayout( conteneur );
+	this->_pions = new MyGrid( conteneur );
 
 	this->_pions->setSpacing( 0 );
 	this->_pions->setContentsMargins( 0, 0, 0, 0 );
@@ -359,8 +359,8 @@ void Echiquier::getButtonMove () {
 }
 
 void Echiquier::clicked_buttonNew() {
-	this->getPions();
-	/*
+	//this->getPions();
+
 	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
 	QString pseudo2 = QInputDialog::getText( this, "Joueur 2", "Nom du joueur 2 :" );
 
@@ -378,7 +378,6 @@ void Echiquier::clicked_buttonNew() {
 	}
 
 	//QMessageBox::information( this, "sdg", "dsjgse" );
-	*/
 }
 
 void Echiquier::clicked_buttonMove() {
