@@ -15,10 +15,11 @@
 			int m_x;
 			int m_y;
 			bool m_white;
+			Echiquier * _echiquier;
 
 		public:
 			Piece();
-			Piece( QWidget * parent );
+			Piece( Echiquier * lEchiquier );
 			Piece( int x, int y, bool isWhite );
 			Piece( const Piece & autre);
 			Piece & operator=(const Piece & autre);
@@ -33,6 +34,8 @@
 			virtual QString getType() = 0;
 			void mouseEvent( QMouseEvent * event );
 			bool miseEchec( int x, int y, bool & color, Echiquier * echiquier );
+			void mousePressEvent( QMouseEvent * event );
+			void selection();
 	};
 
 	class Roi : public Piece {

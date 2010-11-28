@@ -29,6 +29,7 @@
 //			JoueurNoir _JoueurNoir;
 
 		public:
+			int x, y;
 			QGridLayout * _pions;
 
 			Echiquier();

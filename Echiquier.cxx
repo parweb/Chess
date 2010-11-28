@@ -18,9 +18,6 @@ Echiquier::Echiquier( QWidget * parent ) : QWidget( parent ) {
 	this->getLegendY();
 
 	this->_damier = this->getDamier();
-
-
-	//this->_pions->move( 60, 100 );
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -91,8 +88,6 @@ bool Echiquier::placerPiece( Piece * p ) {
 		int i = this->getCase( p->x(), p->y() );
 		this->setPiece( i, p );
 
-		//p->moveTo( p->x(), p->y() );
-
 		this->_pions->addWidget( p, p->y(), p->x() );
 
 		return true;
@@ -112,7 +107,6 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 
 		if ( p->moveTo( x, y, this ) ) {
 			this->enleverPiece( p->x(), p->y() );
-
 			return this->placerPiece( p );
 		}
 		else {
@@ -366,10 +360,6 @@ void Echiquier::getButtonMove () {
 
 void Echiquier::clicked_buttonNew() {
 	this->getPions();
-
-//	cout << "clicked_buttonNew";
-	//this->create();
-
 	/*
 	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
 	QString pseudo2 = QInputDialog::getText( this, "Joueur 2", "Nom du joueur 2 :" );
@@ -380,15 +370,14 @@ void Echiquier::clicked_buttonNew() {
 
 		// on initialise toutes les pieces sur léchiquier
 		//this->_Echiquier->create( ui );
-		this->create();
+		this->getPions();
 	}
 	else {
 		// si les pseudos sont pas rempli on désactive le bouton save
-//		ui->boutonSave->setEnabled( false );
+		// ui->boutonSave->setEnabled( false );
 	}
 
 	//QMessageBox::information( this, "sdg", "dsjgse" );
-
 	*/
 }
 

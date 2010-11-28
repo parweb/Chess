@@ -3,6 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
+CONFIG +=  console debug
 TARGET =
 DEPENDPATH += . Pion
 INCLUDEPATH += .

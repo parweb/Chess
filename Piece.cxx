@@ -14,12 +14,16 @@ Piece::Piece () {
 	//
 }
 
-Piece::Piece ( QWidget * parent ) : QLabel( parent ) {
+Piece::Piece ( Echiquier * lEchiquier ) : QLabel( lEchiquier->getCentralWidget() ) {
+	this->_echiquier = lEchiquier;
+
 	this->setGeometry( QRect( 0, 0, 50, 50 ) );
 	this->setScaledContents( true );
 	this->setAlignment( Qt::AlignCenter );
 
 	this->setFixedSize( 50, 50 );
+	this->setAcceptDrops( true );
+
 }
 
 Piece::Piece ( int x, int y, bool isWhite ) {
@@ -81,7 +85,7 @@ Tour::Tour () {}
 Fou::Fou () {}
 Cavalier::Cavalier () {}
 
-Roi::Roi ( bool isWhite, Echiquier * lEchiquier )  {
+Roi::Roi ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_x = 5;
 	this->m_y = ( isWhite ? 8 : 1 );
 	this->m_white = isWhite;
@@ -92,7 +96,7 @@ Roi::Roi ( bool isWhite, Echiquier * lEchiquier )  {
 	lEchiquier->placerPiece( this );
 }
 
-Reine::Reine ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Reine::Reine ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_x = 4;
 	this->m_y = ( isWhite ? 8:1 );
 	this->m_white = isWhite;
@@ -102,7 +106,7 @@ Reine::Reine ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier->getCe
 	lEchiquier->placerPiece( this );
 }
 
-Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_x = x;
 	this->m_y = ( isWhite ? 8:1 );
 	this->m_white = isWhite;
@@ -112,7 +116,7 @@ Fou::Fou ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->ge
 	lEchiquier->placerPiece( this );
 }
 
-Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_x = x;
 	this->m_y = ( isWhite ? 8:1 );
 	this->m_white = isWhite;
@@ -122,7 +126,7 @@ Tour::Tour ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->
 	lEchiquier->placerPiece( this );
 }
 
-Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	m_x = x;
 	this->m_y = ( isWhite ? 8:1 );
 	this->m_white = isWhite;
@@ -132,7 +136,7 @@ Cavalier::Cavalier ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEch
 	lEchiquier->placerPiece( this );
 }
 
-Pion::Pion ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier->getCentralWidget() ) {
+Pion::Pion ( bool isWhite, int x, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_x = x;
 	this->m_y = ( isWhite ? 7:2 );
 	this->m_white = isWhite;
@@ -475,4 +479,30 @@ bool Pion::mouvementValide( Echiquier * echiquier, int x, int y ) {
 	else {
 		return false;
 	}
+}
+
+void Piece::mousePressEvent( QMouseEvent * event ) {
+
+	this->selection();
+
+	if (
+		( this->_echiquier->x > 0 && this->_echiquier->x <= 8 ) &&
+		( this->_echiquier->y > 0 && this->_echiquier->y <= 8 )
+	) {
+		this->_echiquier->deplacerPiece( this->_echiquier->x, this->_echiquier->y, 1, 3);
+	}
+	else {
+		this->_echiquier->x = this->x();
+		this->_echiquier->y = this->y();
+	}
+}
+
+void Piece::selection() {
+	for ( int i = 0; i < 64; i++ ) {
+		if ( i < 16 || i > 47 ) {
+			//this->_echiquier->getPiece( i )->setEnabled( true );
+		}
+	}
+
+	//this->setEnabled( false );
 }
