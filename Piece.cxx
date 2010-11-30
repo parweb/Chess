@@ -60,23 +60,19 @@ bool Piece::moveTo ( int x, int y, Echiquier * e ) {
 }
 
 QString Piece::getType () {
-	return ( ( m_white ) ? "Blanc" : "Noir" ) ;
+	return ( ( this->m_white ) ? "Blanc" : "Noir" ) ;
 }
 
 int Piece::x () const {
-	return m_x;
+	return this->m_x;
 }
 
 int Piece::y () const {
-	return m_y;
+	return this->m_y;
 }
 
-bool Piece::isWhite () {
-	return m_white;
-}
-
-bool Piece::isBlack () {
-	return !m_white;
+bool Piece::getColor () {
+	return this->m_white;
 }
 
 Roi::Roi () {}
@@ -176,7 +172,7 @@ bool Piece::miseEchec( int x, int y, bool & color, Echiquier * echiquier ) {
 	for ( int i = 1; i < 9; i++ ) {
 		for ( int j = 1; j < 9; j++ ) {
 			if ( color == this->m_white ) {
-				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->isWhite() != this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
+				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->getColor() != this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
 					if ( echiquier->getPiece( i, j )->mouvementValide( echiquier, x, y ) ) {
 						gp += 1;
 					}
@@ -189,7 +185,7 @@ bool Piece::miseEchec( int x, int y, bool & color, Echiquier * echiquier ) {
 				}
 			}
 			else {
-				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->isWhite() == this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
+				if ( ( echiquier->getPiece( i, j ) != NULL ) && ( echiquier->getPiece( i, j )->getColor() == this->m_white ) && ( echiquier->getPiece( i, j )->getType() != "roi_blanc" ) && ( echiquier->getPiece( i, j )->getType() != "roi_noir" ) ) {
 					if ( echiquier->getPiece( i, j )->mouvementValide( echiquier, x, y ) ) {
 						gp += 1;
 					}

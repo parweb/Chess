@@ -29,8 +29,7 @@
 			virtual bool mouvementValide( Echiquier * e, int x, int y );
 			int x() const;
 			int y() const;
-			bool isWhite();
-			bool isBlack();
+			bool getColor();
 			virtual QString getType() = 0;
 			void mouseEvent( QMouseEvent * event );
 			bool miseEchec( int x, int y, bool & color, Echiquier * echiquier );

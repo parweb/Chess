@@ -25,6 +25,8 @@
 
 			QLineEdit * _pieceDestination;
 			QLineEdit * _pieceOrigine;
+			QLabel * legendBlanc;
+			QLabel * legendNoir;
 
 //			JoueurBlanc _JoueurBlanc;
 //			JoueurNoir _JoueurNoir;
@@ -32,6 +34,7 @@
 		public:
 			int x, y;
 			QGridLayout * _pions;
+			bool player; // true:blanc ou false:noir
 
 			Echiquier();
 			Echiquier( QWidget * parent );
@@ -69,6 +72,7 @@
 
 			void getButtonNew ();
 			void getButtonMove ();
+			void getLegendJoueur ();
 
 			QFont getLegendFont ();
 

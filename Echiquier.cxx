@@ -14,8 +14,11 @@ Echiquier::Echiquier( QWidget * parent ) : QWidget( parent ) {
 
 	this->getButtonNew();
 	this->getButtonMove();
+
 	this->getLegendX();
 	this->getLegendY();
+
+	this->getLegendJoueur();
 
 	this->_damier = this->getDamier();
 }
@@ -86,9 +89,15 @@ bool Echiquier::placerPiece( Piece * p ) {
 		&& ( p != NULL )
 	) {
 		int i = this->getCase( p->x(), p->y() );
-		this->setPiece( i, p );
 
+		Piece * afterPiece = this->getPiece( i );
+
+		QLayoutItem * plop = this->_pions->itemAtPosition( p->y(), p->x() );
+
+		this->_pions->removeItem( plop );
 		this->_pions->addWidget( p, p->y(), p->x() );
+
+		this->setPiece( i, p );
 
 		return true;
 	}
@@ -102,18 +111,17 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 		( x >= 1 ) && ( x <= 8 ) &&
 		( y >= 1 ) && ( y <= 8 )
 	) {
-		int old_x = p->x();
-		int old_y = p->y();
+		if ( p->getColor() != this->player ) {
+			if ( p->moveTo( x, y, this ) ) {
+				// on change de joueur
+				this->player = !this->player;
 
-		if ( p->moveTo( x, y, this ) ) {
-			this->enleverPiece( p->x(), p->y() );
-			return this->placerPiece( p );
-		}
-		else {
-//			p->moveTo( old_x, old_y );
-
-			cout << "Mouvement impossible";
-			return false;
+				this->enleverPiece( p->x(), p->y() );
+				return this->placerPiece( p );
+			}
+			else {
+				return false;
+			}
 		}
 	}
 
@@ -218,6 +226,9 @@ QWidget * Echiquier::getDamier () {
 	this->_pions->setRowMinimumHeight(6, 50 );
 	this->_pions->setRowMinimumHeight(7, 50 );
 	this->_pions->setRowMinimumHeight(8, 50 );
+
+	// on defini que se sont les noirs qui commencerons a jouer
+	this->player = true;
 
 	return conteneur;
 }
@@ -328,6 +339,16 @@ void Echiquier::getButtonNew () {
 	QObject::connect( buttonNew, SIGNAL( clicked() ), this, SLOT( clicked_buttonNew() ) );
 }
 
+void Echiquier::getLegendJoueur () {
+	this->legendBlanc = new QLabel( this->getCentralWidget() );
+	this->legendBlanc->setObjectName( "legendBlanc" );
+	this->legendBlanc->setGeometry( QRect( 300, 30, 300, 32) );
+
+	this->legendNoir = new QLabel( this->getCentralWidget() );
+	this->legendNoir->setObjectName( "legendNoir" );
+	this->legendNoir->setGeometry( QRect( 300, 10, 300, 32) );
+}
+
 void Echiquier::getButtonMove () {
 	QLineEdit * pieceOrigine = new QLineEdit( this->getCentralWidget() );
 	pieceOrigine->setObjectName( "pieceOrigine" );
@@ -371,6 +392,9 @@ void Echiquier::clicked_buttonNew() {
 		// on initialise toutes les pieces sur léchiquier
 		//this->_Echiquier->create( ui );
 		this->getPions();
+
+		this->legendBlanc->setText( "Joueur blanc: " + pseudo1 );
+		this->legendNoir->setText( "Joueur noir: " + pseudo2 );
 	}
 	else {
 		// si les pseudos sont pas rempli on désactive le bouton save
