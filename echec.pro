@@ -9,6 +9,8 @@ DEPENDPATH += . Pion
 INCLUDEPATH += .
 
 # Input
-HEADERS += Echiquier.h Joueur.h mainwindow.h Piece.h
-SOURCES += Echiquier.cxx Joueur.cxx main.cpp mainwindow.cpp Piece.cxx
+HEADERS += Echiquier.h Joueur.h mainwindow.h Piece.h \
+    MyQGraphicsView.h
+SOURCES += Echiquier.cxx Joueur.cxx main.cpp mainwindow.cpp Piece.cxx \
+    MyQGraphicsView.cpp
 RESOURCES += pions.qrc

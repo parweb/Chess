@@ -478,18 +478,42 @@ bool Pion::mouvementValide( Echiquier * echiquier, int x, int y ) {
 }
 
 void Piece::mousePressEvent( QMouseEvent * event ) {
+	QMap<int, QString> abscisse;
+
+	abscisse.insert(1, "A");
+	abscisse.insert(2, "B");
+	abscisse.insert(3, "C");
+	abscisse.insert(4, "D");
+	abscisse.insert(5, "E");
+	abscisse.insert(6, "F");
+	abscisse.insert(7, "G");
+	abscisse.insert(8, "H");
 
 	this->selection();
 
+	//pieceOrigine
+
+	QLineEdit * pieceOrigine = this->_echiquier->getCentralWidget()->findChild<QLineEdit *>("pieceOrigine");
+	QLineEdit * pieceDestination = this->_echiquier->getCentralWidget()->findChild<QLineEdit *>("pieceDestination");
+
 	if (
-		( this->_echiquier->x > 0 && this->_echiquier->x <= 8 ) &&
-		( this->_echiquier->y > 0 && this->_echiquier->y <= 8 )
+		( this->_echiquier->xd() >= 1 && this->_echiquier->xd() <= 8 ) &&
+		( this->_echiquier->yd() >= 1 && this->_echiquier->yd() <= 8 ) &&
+		this->_echiquier->player == this->getColor()
 	) {
-		this->_echiquier->deplacerPiece( this->_echiquier->x, this->_echiquier->y, 1, 3);
+		this->_echiquier->xf( this->x() );
+		this->_echiquier->yf( this->y() );
+
+		pieceDestination->setText( abscisse.value( this->x() ) + QString::number( this->y() ) );
+
+		this->_echiquier->makeMove();
 	}
 	else {
-		this->_echiquier->x = this->x();
-		this->_echiquier->y = this->y();
+		this->_echiquier->xd( this->x() );
+		this->_echiquier->yd( this->y() );
+
+		pieceOrigine->setText( abscisse.value( this->x() ) + QString::number( this->y() ) );
+		pieceDestination->setText( "" );
 	}
 }
 

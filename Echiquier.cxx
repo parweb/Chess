@@ -12,6 +12,11 @@ Echiquier::Echiquier( QWidget * parent ) : QWidget( parent ) {
 	this->centralWidget = parent;
 	this->setObjectName( "echiquier" );
 
+	this->xd( NULL );
+	this->yd( NULL );
+	this->xf( NULL );
+	this->yf( NULL );
+
 	this->getButtonNew();
 	this->getButtonMove();
 
@@ -21,6 +26,8 @@ Echiquier::Echiquier( QWidget * parent ) : QWidget( parent ) {
 	this->getLegendJoueur();
 
 	this->_damier = this->getDamier();
+
+	this->setInfo( "Veuillez cliquez sur le bouton Nouveau" );
 }
 
 Piece * Echiquier::getPiece( int x, int y ) {
@@ -73,6 +80,39 @@ void Echiquier::setPiece( int x, int y, Piece * p ) {
 	}
 }
 
+void Echiquier::makeMove() {
+	if (
+		this->xd() >= 1 && this->xd() <= 8 &&
+		this->yd() >= 1 && this->yd() <= 8 &&
+		this->xf() >= 1 && this->xf() <= 8 &&
+		this->yf() >= 1 && this->yf() <= 8
+	) {
+		this->deplacerPiece( this->xd(), this->yd(), this->xf(), this->yf() );
+
+		this->xd( NULL );
+		this->yd( NULL );
+		this->xf( NULL );
+		this->yf( NULL );
+	}
+}
+
+void Echiquier::togglePlayer() {
+	this->player = !this->player;
+
+	QString color = this->player ? this->_joueur2 : this->_joueur1;
+
+	this->setInfo( "C'est a "+ color +" de jouer !" );
+}
+
+QLabel * Echiquier::getInfo() {
+	QLabel * labelInfo = this->getCentralWidget()->findChild<QLabel *>("labelInfo");
+	return labelInfo;
+}
+
+void Echiquier::setInfo( QString text ) {
+	this->getInfo()->setText( text );
+}
+
 bool Echiquier::placerPiece( int x, int y ) {
 	return this->placerPiece( this->getPiece( x, y ) );
 }
@@ -114,7 +154,7 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 		if ( p->getColor() != this->player ) {
 			if ( p->moveTo( x, y, this ) ) {
 				// on change de joueur
-				this->player = !this->player;
+				this->togglePlayer();
 
 				this->enleverPiece( p->x(), p->y() );
 				return this->placerPiece( p );
@@ -122,6 +162,9 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 			else {
 				return false;
 			}
+		}
+		else {
+			this->setInfo( "C'est au joueur adverse de jouer !" );
 		}
 	}
 
@@ -193,7 +236,12 @@ QWidget * Echiquier::getDamier () {
 		xf = xi + ( exi * ( coord->x() - 1 ) );
 		yf = yi + ( eyi * ( coord->y() - 1 ) );
 
-		QGraphicsView * place = new QGraphicsView( conteneur );
+		MyQGraphicsView * place = new MyQGraphicsView( conteneur );
+
+		place->setEchiquier( this );
+
+		place->x( coord->x() );
+		place->y( coord->y() );
 
 		place->setObjectName( "CASE_"+QString::number( i+1 ) );
 		place->setGeometry( QRect( xf, yf, exi, eyi ) );
@@ -376,29 +424,41 @@ void Echiquier::getButtonMove () {
 	buttonMove->setGeometry( QRect( 300, 520, 114, 32 ) );
 	buttonMove->setText( QString::fromUtf8( "Déplacer" ) );
 
+	QLabel * labelInfo = new QLabel( this->getCentralWidget() );
+	labelInfo->setObjectName( "labelInfo" );
+	labelInfo->setGeometry( QRect( 100, 555, 300, 16 ) );
+
 	QObject::connect( buttonMove, SIGNAL( clicked() ), this, SLOT( clicked_buttonMove() ) );
 }
 
 void Echiquier::clicked_buttonNew() {
 	//this->getPions();
 
-	QString pseudo1 = QInputDialog::getText( this, "Joueur 1", "Nom du joueur 1 :" );
-	QString pseudo2 = QInputDialog::getText( this, "Joueur 2", "Nom du joueur 2 :" );
+	QString pseudo1 = QInputDialog::getText( this, "Joueur blanc", "Nom du joueur blanc :" );
+	QString pseudo2 = QInputDialog::getText( this, "Joueur noir", "Nom du joueur noir :" );
 
 	if ( pseudo1 != "" && pseudo2 != "" ) {
-		// si les pseudos on bien été rempli alors on active le bouton save
-//		ui->boutonSave->setEnabled( true );
+		// si les pseudos on bien été rempli
+		if ( pseudo1 != pseudo2 ) {
+			// si les pseudo sont différents
+			this->getPions();
 
-		// on initialise toutes les pieces sur léchiquier
-		//this->_Echiquier->create( ui );
-		this->getPions();
+			this->_joueur1 = pseudo1;
+			this->_joueur2 = pseudo2;
 
-		this->legendBlanc->setText( "Joueur blanc: " + pseudo1 );
-		this->legendNoir->setText( "Joueur noir: " + pseudo2 );
+			this->legendBlanc->setText( "Joueur blanc:  " + this->_joueur1 );
+			this->legendNoir->setText( "  Joueur noir:  " + this->_joueur2 );
+
+			this->setInfo( "C'est a "+ this->_joueur2 +" de jouer" );
+		}
+		else {
+			// si les pseudo sont pareil
+			this->setInfo( QString::fromUtf8( "Veuillez indiquer des pseudo différents" ) );
+		}
 	}
 	else {
-		// si les pseudos sont pas rempli on désactive le bouton save
-		// ui->boutonSave->setEnabled( false );
+		// si les pseudos sont pas rempli
+		this->setInfo( "Veuillez indiquez 2 joueurs" );
 	}
 
 	//QMessageBox::information( this, "sdg", "dsjgse" );
@@ -469,4 +529,36 @@ void Echiquier::clicked_buttonMove() {
 
 	// on déplace la piece
 	this->deplacerPiece( xd, yd, xf, yf );
+}
+
+void Echiquier::xd(int i) {
+	this->_xd = i;
+}
+
+void Echiquier::yd(int i) {
+	this->_yd = i;
+}
+
+void Echiquier::xf(int i) {
+	this->_xf = i;
+}
+
+void Echiquier::yf(int i) {
+	this->_yf = i;
+}
+
+int Echiquier::xd() {
+	return this->_xd;
+}
+
+int Echiquier::yd() {
+	return this->_yd;
+}
+
+int Echiquier::xf() {
+	return this->_xf;
+}
+
+int Echiquier::yf() {
+	return this->_yf;
 }

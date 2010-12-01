@@ -31,7 +31,6 @@
 			int y() const;
 			bool getColor();
 			virtual QString getType() = 0;
-			void mouseEvent( QMouseEvent * event );
 			bool miseEchec( int x, int y, bool & color, Echiquier * echiquier );
 			void mousePressEvent( QMouseEvent * event );
 			void selection();
