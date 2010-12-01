@@ -23,7 +23,6 @@ Piece::Piece ( Echiquier * lEchiquier ) : QLabel( lEchiquier->getCentralWidget()
 
 	this->setFixedSize( 50, 50 );
 	this->setAcceptDrops( true );
-
 }
 
 Piece::Piece ( int x, int y, bool isWhite ) {
@@ -87,7 +86,6 @@ Roi::Roi ( bool isWhite, Echiquier * lEchiquier ) : Piece( lEchiquier ) {
 	this->m_white = isWhite;
 
 	this->setPixmap(QPixmap( ":/Pions/"+this->getType()+".png" ));
-	//this->move( 80, 80 );
 
 	lEchiquier->placerPiece( this );
 }

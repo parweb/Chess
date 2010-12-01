@@ -154,7 +154,7 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 				this->togglePlayer();
 
 				if ( this->getPiece( x, y ) != NULL ) {
-					this->getPiece( x, y )->setVisible( false );
+					this->getPiece( x, y )->hide();
 				}
 				this->enleverPiece( p->x(), p->y() );
 				return this->placerPiece( p );
@@ -259,26 +259,11 @@ QWidget * Echiquier::getDamier () {
 	this->_pions->setSpacing( 0 );
 	this->_pions->setContentsMargins( 0, 0, 0, 0 );
 
-	this->_pions->setColumnMinimumWidth(1, 50 );
-	this->_pions->setColumnMinimumWidth(2, 50 );
-	this->_pions->setColumnMinimumWidth(3, 50 );
-	this->_pions->setColumnMinimumWidth(4, 50 );
-	this->_pions->setColumnMinimumWidth(5, 50 );
-	this->_pions->setColumnMinimumWidth(6, 50 );
-	this->_pions->setColumnMinimumWidth(7, 50 );
-	this->_pions->setColumnMinimumWidth(8, 50 );
-
-	this->_pions->setRowMinimumHeight(1, 50 );
-	this->_pions->setRowMinimumHeight(2, 50 );
-	this->_pions->setRowMinimumHeight(3, 50 );
-	this->_pions->setRowMinimumHeight(4, 50 );
-	this->_pions->setRowMinimumHeight(5, 50 );
-	this->_pions->setRowMinimumHeight(6, 50 );
-	this->_pions->setRowMinimumHeight(7, 50 );
-	this->_pions->setRowMinimumHeight(8, 50 );
-
-	// on defini que se sont les noirs qui commencerons a jouer
-	this->player = true;
+	// taille mini pour les colones et lignes
+	for ( int i = 1; i <= 8; i++ ) {
+		this->_pions->setColumnMinimumWidth(i, 50 );
+		this->_pions->setRowMinimumHeight(i, 50 );
+	}
 
 	return conteneur;
 }
@@ -339,6 +324,16 @@ void Echiquier::getLegendY () {
 }
 
 void Echiquier::getPions () {
+	for ( int i = 0; i < 64; i++ ) {
+		if ( this->getPiece( i ) != NULL ) {
+			this->_pions->removeWidget( this->getPiece( i ) );
+			this->getPiece( i )->hide();
+		}
+	}
+
+	// on defini que se sont les noirs qui commencerons a jouer
+	this->player = true;
+
 	Roi * RoiBlanc = new Roi( true, this );
 	Roi * RoiNoir = new Roi( false, this );
 	Reine * ReineBlanc = new Reine( true, this );
@@ -436,8 +431,8 @@ void Echiquier::getButtonMove () {
 void Echiquier::clicked_buttonNew() {
 	//this->getPions();
 
-	QString pseudo1 = QInputDialog::getText( this, "Joueur blanc", "Nom du joueur blanc :" );
-	QString pseudo2 = QInputDialog::getText( this, "Joueur noir", "Nom du joueur noir :" );
+	QString pseudo1 = QInputDialog::getText( this, "Joueur blanc", "Joueur blanc :" );
+	QString pseudo2 = QInputDialog::getText( this, "Joueur noir", "Joueur noir :" );
 
 	if ( pseudo1 != "" && pseudo2 != "" ) {
 		// si les pseudos on bien été rempli
