@@ -132,9 +132,6 @@ bool Echiquier::placerPiece( Piece * p ) {
 
 		Piece * afterPiece = this->getPiece( i );
 
-		QLayoutItem * plop = this->_pions->itemAtPosition( p->y(), p->x() );
-
-		this->_pions->removeItem( plop );
 		this->_pions->addWidget( p, p->y(), p->x() );
 
 		this->setPiece( i, p );
@@ -156,6 +153,9 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 				// on change de joueur
 				this->togglePlayer();
 
+				if ( this->getPiece( x, y ) != NULL ) {
+					this->getPiece( x, y )->setVisible( false );
+				}
 				this->enleverPiece( p->x(), p->y() );
 				return this->placerPiece( p );
 			}
@@ -164,7 +164,9 @@ bool Echiquier::deplacerPiece( Piece * p, int x, int y ) {
 			}
 		}
 		else {
-			this->setInfo( "C'est au joueur adverse de jouer !" );
+			QString color = this->player ? this->_joueur2 : this->_joueur1;
+
+			this->setInfo( "C'est a "+ color +" de jouer !" );
 		}
 	}
 
